@@ -1,0 +1,49 @@
+{
+  "physical_security": {
+    "any": [
+      "anti_tampering",
+      "access_control"
+    ]
+  },
+  "secure_storage": {
+    "all": [
+      "backup",
+      {
+        "any": [
+          "encrypted_storage",
+          "obfuscated_storage"
+        ]
+      }
+    ]
+  },
+  "secure_communication": {
+    "all": [
+      "authentication",
+      "public_key_cryptography"
+    ]
+  },
+  "intrusion_detection": {
+    "all": [
+      "host_ids",
+      "network_ids"
+    ]
+  },
+  "monitoring": {
+    "all": [
+      "resource_monitoring",
+      "access_logs"
+    ]
+  },
+  "edge_communication": {
+    "all": [
+      "wireless_security",
+      "iot_data_encryption"
+    ]
+  },
+  "network_protection": {
+    "all": [
+      "firewall",
+      "network_ids"
+    ]
+  }
+}

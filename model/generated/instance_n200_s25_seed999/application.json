@@ -1,0 +1,578 @@
+{
+  "services": {
+    "service1": {
+      "class": "light",
+      "profiles": [
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          "firewall",
+          "network_ids"
+        ]
+      }
+    },
+    "service2": {
+      "class": "light",
+      "profiles": [
+        "edge_communication"
+      ],
+      "requirements": {
+        "all": [
+          "wireless_security",
+          "iot_data_encryption"
+        ]
+      }
+    },
+    "service3": {
+      "class": "light",
+      "profiles": [
+        "physical_security"
+      ],
+      "requirements": {
+        "any": [
+          "anti_tampering",
+          "access_control"
+        ]
+      }
+    },
+    "service4": {
+      "class": "light",
+      "profiles": [
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          "firewall",
+          "network_ids"
+        ]
+      }
+    },
+    "service5": {
+      "class": "light",
+      "profiles": [
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          "resource_monitoring",
+          "access_logs"
+        ]
+      }
+    },
+    "service6": {
+      "class": "light",
+      "profiles": [
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          "resource_monitoring",
+          "access_logs"
+        ]
+      }
+    },
+    "service7": {
+      "class": "light",
+      "profiles": [
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          "resource_monitoring",
+          "access_logs"
+        ]
+      }
+    },
+    "service8": {
+      "class": "medium",
+      "profiles": [
+        "intrusion_detection",
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    },
+    "service9": {
+      "class": "medium",
+      "profiles": [
+        "secure_storage",
+        "edge_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          }
+        ]
+      }
+    },
+    "service10": {
+      "class": "medium",
+      "profiles": [
+        "secure_communication",
+        "edge_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          }
+        ]
+      }
+    },
+    "service11": {
+      "class": "medium",
+      "profiles": [
+        "network_protection",
+        "edge_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          }
+        ]
+      }
+    },
+    "service12": {
+      "class": "medium",
+      "profiles": [
+        "network_protection",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "service13": {
+      "class": "medium",
+      "profiles": [
+        "edge_communication",
+        "secure_storage"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "service14": {
+      "class": "medium",
+      "profiles": [
+        "secure_storage",
+        "secure_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          }
+        ]
+      }
+    },
+    "service15": {
+      "class": "medium",
+      "profiles": [
+        "monitoring",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "service16": {
+      "class": "medium",
+      "profiles": [
+        "edge_communication",
+        "secure_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          }
+        ]
+      }
+    },
+    "service17": {
+      "class": "medium",
+      "profiles": [
+        "intrusion_detection",
+        "secure_storage"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "service18": {
+      "class": "medium",
+      "profiles": [
+        "network_protection",
+        "edge_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          }
+        ]
+      }
+    },
+    "service19": {
+      "class": "medium",
+      "profiles": [
+        "intrusion_detection",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "service20": {
+      "class": "medium",
+      "profiles": [
+        "secure_communication",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "service21": {
+      "class": "heavy",
+      "profiles": [
+        "secure_storage",
+        "edge_communication",
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          }
+        ]
+      }
+    },
+    "service22": {
+      "class": "heavy",
+      "profiles": [
+        "secure_storage",
+        "network_protection",
+        "secure_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          }
+        ]
+      }
+    },
+    "service23": {
+      "class": "heavy",
+      "profiles": [
+        "secure_storage",
+        "physical_security",
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          },
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          }
+        ]
+      }
+    },
+    "service24": {
+      "class": "heavy",
+      "profiles": [
+        "monitoring",
+        "intrusion_detection",
+        "secure_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          },
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          }
+        ]
+      }
+    },
+    "service25": {
+      "class": "heavy",
+      "profiles": [
+        "secure_storage",
+        "edge_communication",
+        "intrusion_detection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "name": "scalable_app_25"
+}

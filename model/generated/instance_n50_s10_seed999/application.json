@@ -1,0 +1,226 @@
+{
+  "services": {
+    "service1": {
+      "class": "light",
+      "profiles": [
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          "firewall",
+          "network_ids"
+        ]
+      }
+    },
+    "service2": {
+      "class": "light",
+      "profiles": [
+        "edge_communication"
+      ],
+      "requirements": {
+        "all": [
+          "wireless_security",
+          "iot_data_encryption"
+        ]
+      }
+    },
+    "service3": {
+      "class": "light",
+      "profiles": [
+        "physical_security"
+      ],
+      "requirements": {
+        "any": [
+          "anti_tampering",
+          "access_control"
+        ]
+      }
+    },
+    "service4": {
+      "class": "medium",
+      "profiles": [
+        "network_protection",
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          }
+        ]
+      }
+    },
+    "service5": {
+      "class": "medium",
+      "profiles": [
+        "monitoring",
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    },
+    "service6": {
+      "class": "medium",
+      "profiles": [
+        "intrusion_detection",
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    },
+    "service7": {
+      "class": "medium",
+      "profiles": [
+        "secure_storage",
+        "edge_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          }
+        ]
+      }
+    },
+    "service8": {
+      "class": "medium",
+      "profiles": [
+        "secure_communication",
+        "edge_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          }
+        ]
+      }
+    },
+    "service9": {
+      "class": "heavy",
+      "profiles": [
+        "network_protection",
+        "edge_communication",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "service10": {
+      "class": "heavy",
+      "profiles": [
+        "edge_communication",
+        "secure_storage",
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "name": "scalable_app_10"
+}

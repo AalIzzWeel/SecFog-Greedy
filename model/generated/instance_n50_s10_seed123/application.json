@@ -1,0 +1,226 @@
+{
+  "services": {
+    "service1": {
+      "class": "light",
+      "profiles": [
+        "physical_security"
+      ],
+      "requirements": {
+        "any": [
+          "anti_tampering",
+          "access_control"
+        ]
+      }
+    },
+    "service2": {
+      "class": "light",
+      "profiles": [
+        "secure_communication"
+      ],
+      "requirements": {
+        "all": [
+          "authentication",
+          "public_key_cryptography"
+        ]
+      }
+    },
+    "service3": {
+      "class": "light",
+      "profiles": [
+        "physical_security"
+      ],
+      "requirements": {
+        "any": [
+          "anti_tampering",
+          "access_control"
+        ]
+      }
+    },
+    "service4": {
+      "class": "medium",
+      "profiles": [
+        "network_protection",
+        "intrusion_detection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    },
+    "service5": {
+      "class": "medium",
+      "profiles": [
+        "secure_communication",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "service6": {
+      "class": "medium",
+      "profiles": [
+        "network_protection",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "service7": {
+      "class": "medium",
+      "profiles": [
+        "intrusion_detection",
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          }
+        ]
+      }
+    },
+    "service8": {
+      "class": "medium",
+      "profiles": [
+        "monitoring",
+        "secure_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          },
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          }
+        ]
+      }
+    },
+    "service9": {
+      "class": "heavy",
+      "profiles": [
+        "secure_communication",
+        "physical_security",
+        "secure_storage"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          },
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "service10": {
+      "class": "heavy",
+      "profiles": [
+        "secure_storage",
+        "secure_communication",
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          },
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "name": "scalable_app_10"
+}

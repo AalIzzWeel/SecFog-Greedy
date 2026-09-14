@@ -1,0 +1,49 @@
+{
+  "name": "smartbuilding",
+  "services": {
+    "iot_controller": {
+      "requirements": {
+        "all": [
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          },
+          "public_key_cryptography",
+          "authentication"
+        ]
+      }
+    },
+    "data_storage": {
+      "requirements": {
+        "all": [
+          "backup",
+          {
+            "any": [
+              "encrypted_storage",
+              "obfuscated_storage"
+            ]
+          },
+          "access_logs",
+          "network_ids",
+          "public_key_cryptography",
+          "authentication"
+        ]
+      }
+    },
+    "dashboard": {
+      "requirements": {
+        "all": [
+          "host_ids",
+          "resource_monitoring",
+          "public_key_cryptography",
+          "authentication"
+        ]
+      }
+    }
+  }
+}
+
+
+

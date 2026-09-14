@@ -1,0 +1,93 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "edge2"
+    },
+    {
+      "name": "service2",
+      "node": "edge2"
+    },
+    {
+      "name": "service3",
+      "node": "edge5"
+    },
+    {
+      "name": "service4",
+      "node": "edge7"
+    },
+    {
+      "name": "service5",
+      "node": "edge12"
+    }
+  ],
+  "name": "placement_n25_s5",
+  "application": "scalable_app_5",
+  "operator": "appOp",
+  "security_state": {
+    "edge12": {
+      "authentication": 0,
+      "public_key_cryptography": 0,
+      "network_ids": 1,
+      "encrypted_storage": null,
+      "obfuscated_storage": 0,
+      "access_control": 0,
+      "anti_tampering": null,
+      "backup": 0,
+      "firewall": null,
+      "resource_monitoring": 0,
+      "host_ids": 2,
+      "access_logs": 1,
+      "wireless_security": 0,
+      "iot_data_encryption": 0
+    },
+    "edge2": {
+      "authentication": 1,
+      "public_key_cryptography": 0,
+      "network_ids": 0,
+      "encrypted_storage": 1,
+      "obfuscated_storage": 1,
+      "access_control": null,
+      "anti_tampering": 0,
+      "backup": null,
+      "firewall": 2,
+      "resource_monitoring": null,
+      "host_ids": 1,
+      "access_logs": 2,
+      "wireless_security": 0,
+      "iot_data_encryption": 0
+    },
+    "edge5": {
+      "authentication": 0,
+      "public_key_cryptography": 2,
+      "network_ids": null,
+      "encrypted_storage": 0,
+      "obfuscated_storage": 0,
+      "access_control": null,
+      "anti_tampering": 1,
+      "backup": 1,
+      "firewall": 0,
+      "resource_monitoring": null,
+      "host_ids": 1,
+      "access_logs": 1,
+      "wireless_security": 1,
+      "iot_data_encryption": 0
+    },
+    "edge7": {
+      "authentication": 1,
+      "public_key_cryptography": 1,
+      "network_ids": 0,
+      "encrypted_storage": 0,
+      "obfuscated_storage": 0,
+      "access_control": 0,
+      "anti_tampering": 1,
+      "backup": 1,
+      "firewall": 0,
+      "resource_monitoring": 1,
+      "host_ids": 1,
+      "access_logs": null,
+      "wireless_security": null,
+      "iot_data_encryption": 0
+    }
+  }
+}

@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+.venv/
+debug_problog_program_*.pl
+tests/
+optimizer/profiler.pytests/

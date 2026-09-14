@@ -1,0 +1,121 @@
+{
+  "services": {
+    "service1": {
+      "class": "light",
+      "profiles": [
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          "firewall",
+          "network_ids"
+        ]
+      }
+    },
+    "service2": {
+      "class": "medium",
+      "profiles": [
+        "edge_communication",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "service3": {
+      "class": "medium",
+      "profiles": [
+        "network_protection",
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          }
+        ]
+      }
+    },
+    "service4": {
+      "class": "medium",
+      "profiles": [
+        "monitoring",
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    },
+    "service5": {
+      "class": "heavy",
+      "profiles": [
+        "intrusion_detection",
+        "network_protection",
+        "secure_storage"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "name": "scalable_app_5"
+}

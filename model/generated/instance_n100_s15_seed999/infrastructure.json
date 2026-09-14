@@ -1,0 +1,404 @@
+{
+  "nodes": {
+    "cloud1": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud2": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud3": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud4": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud5": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud6": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud7": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud8": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud9": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud10": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud11": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud12": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud13": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud14": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud15": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud16": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud17": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud18": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud19": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud20": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud21": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud22": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud23": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud24": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud25": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud26": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud27": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud28": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud29": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "cloud30": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    },
+    "edge1": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge2": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge3": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge4": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge5": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge6": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge7": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge8": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge9": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge10": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge11": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge12": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge13": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge14": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge15": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge16": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge17": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge18": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge19": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge20": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge21": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge22": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge23": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge24": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge25": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge26": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge27": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge28": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge29": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge30": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge31": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge32": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge33": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge34": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge35": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge36": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge37": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge38": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge39": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge40": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge41": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge42": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge43": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge44": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge45": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge46": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge47": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge48": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge49": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge50": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge51": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge52": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge53": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge54": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge55": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge56": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge57": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge58": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge59": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge60": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge61": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge62": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge63": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge64": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge65": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge66": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge67": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge68": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge69": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "edge70": {
+      "type": "edge",
+      "operator": "edgeOp"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "services": {
+    "service1": {
+      "class": "light",
+      "profiles": [
+        "edge_communication"
+      ],
+      "requirements": {
+        "all": [
+          "wireless_security",
+          "iot_data_encryption"
+        ]
+      }
+    },
+    "service2": {
+      "class": "medium",
+      "profiles": [
+        "physical_security",
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    },
+    "service3": {
+      "class": "medium",
+      "profiles": [
+        "edge_communication",
+        "secure_communication"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          }
+        ]
+      }
+    },
+    "service4": {
+      "class": "medium",
+      "profiles": [
+        "secure_storage",
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    },
+    "service5": {
+      "class": "heavy",
+      "profiles": [
+        "secure_storage",
+        "edge_communication",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "name": "scalable_app_5"
+}
