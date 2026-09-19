@@ -18,7 +18,7 @@ from optimizer.utils import (
     load_placement,
 )
 from scoring.score_wrapper import ScoreWrapper
-from src.fast_greedy import FastGreedyOptimizer
+from src.fast_greedy import FastGreedyOptimizer, build_downgrade_then_upgrade_input
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -114,7 +114,7 @@ class FastBenchmarkResult:
     instance: str
     seed: int
     placement: str
-    reversal_policy: str
+    approach: str
 
     infrastructure_nodes: int
     used_nodes: int
@@ -125,6 +125,7 @@ class FastBenchmarkResult:
     inactive_initial: int
 
     budget: int
+    effective_budget: int
 
     initial_score: float
     final_score: float
@@ -152,14 +153,16 @@ def run_experiment(
     placement: dict,
     instance_name: str,
     budget: int,
-    reversal_policy: str,
+    approach: str,
 ) -> tuple[FastBenchmarkResult, dict]:
 
-    initial_state = create_initial_state(
+    original_initial_state = create_initial_state(
         catalog,
         infrastructure,
         placement,
     )
+
+    initial_state = original_initial_state.copy()
 
     wrapper = ScoreWrapper(
         catalog=catalog,
@@ -174,10 +177,30 @@ def run_experiment(
         application=application,
         placement=placement,
         score_wrapper=wrapper,
-        allow_reversal=(
-            reversal_policy == "allow"
-        ),
     )
+
+    # Le metriche di qualita' devono usare la stessa baseline P0 per
+    # entrambi gli approcci. Downgrade-then-upgrade modifica infatti lo
+    # stato di partenza operativo portandolo a L0, ma questo stato non e'
+    # il placement iniziale dell'istanza.
+    reference_initial_score: float | None = None
+
+    effective_budget = budget
+    if approach == "downgrade-then-upgrade":
+        reference_wrapper = ScoreWrapper(
+            catalog=catalog,
+            infrastructure=infrastructure,
+            application=application,
+            placement=placement,
+            base_path=str(BASE_PATH),
+        )
+        reference_initial_score = reference_wrapper.evaluate(
+            original_initial_state
+        )
+
+        initial_state, effective_budget = build_downgrade_then_upgrade_input(
+            initial_state, budget, optimizer.costs
+        )
 
     #Profiler.reset()
     start = time.perf_counter()
@@ -189,27 +212,33 @@ def run_experiment(
         history,
     ) = optimizer.optimize(
         initial_state,
-        budget,
+        effective_budget,
     )
 
     elapsed_seconds = (
         time.perf_counter() - start
     )
 
-    initial_score = optimizer.initial_score
+    optimizer_initial_score = optimizer.initial_score
 
-    if initial_score is None:
+    if optimizer_initial_score is None:
         raise RuntimeError(
             "Lo score iniziale non è stato calcolato."
         )
 
+    initial_score = (
+        reference_initial_score
+        if reference_initial_score is not None
+        else optimizer_initial_score
+    )
+
     final_policy = build_final_policy(
-        initial_state,
+        original_initial_state,
         final_state,
     )
 
     total, active, inactive = (
-        initial_state.count_summary()
+        original_initial_state.count_summary()
     )
 
     delta_score = (
@@ -235,8 +264,9 @@ def run_experiment(
             final_score / initial_score
         )
 
-    net_cost = (
-        budget - remaining_budget
+    net_cost = optimizer.costs.calculate_net_cost(
+        original_initial_state,
+        final_state,
     )
 
     reallocation_steps = sum(
@@ -253,7 +283,7 @@ def run_experiment(
         instance=instance_name,
         seed=get_instance_seed(instance_name),
         placement=placement_name,
-        reversal_policy=reversal_policy,
+        approach=approach,
 
         infrastructure_nodes=len(
             infrastructure.get("nodes", {})
@@ -270,6 +300,7 @@ def run_experiment(
         inactive_initial=inactive,
 
         budget=budget,
+        effective_budget=effective_budget,
 
         initial_score=initial_score,
         final_score=final_score,
@@ -299,23 +330,18 @@ def run_experiment(
         "history": [
             {
                 "step": step.step_number,
-                "downgrade": (
-                    str(step.downgrade)
-                    if step.downgrade is not None
-                    else None
-                ),
+                "downgrades": [
+                    str(action) for action in step.downgrades
+                ],
                 "action": str(step.action),
                 "net_cost": step.cost,
-                "benefit": step.benefit,
+                "specific_quality": step.specific_quality,
                 "efficiency": (
                     step.efficiency
                     if math.isfinite(
                         step.efficiency
                     )
                     else None
-                ),
-                "node_priority": (
-                    step.node_priority
                 ),
                 "remaining_budget": (
                     step.remaining_budget
@@ -341,7 +367,7 @@ def print_result(
     print(
         f"{result.instance} "
         f"| budget={result.budget} "
-        f"| reversal={result.reversal_policy}"
+        f"| approach={result.approach}"
     )
 
     print("=" * 90)
@@ -605,13 +631,13 @@ def main() -> None:
     )
 
     parser.add_argument(
-        "--reversal-policies",
+        "--approaches",
         nargs="+",
         choices=[
-            "allow",
-            "forbid",
+            "upgrade-then-downgrade",
+            "downgrade-then-upgrade",
         ],
-        default=["allow"],
+        default=["upgrade-then-downgrade", "downgrade-then-upgrade"],
     )
 
     parser.add_argument(
@@ -653,9 +679,9 @@ def main() -> None:
         f"Budget  : {budgets}"
     )
     print(
-        "Reversal: "
+        "Approcci: "
         + ", ".join(
-            args.reversal_policies
+            args.approaches
         )
     )
 
@@ -670,8 +696,8 @@ def main() -> None:
         )
 
         for budget in budgets:
-            for reversal_policy in (
-                args.reversal_policies
+            for approach in (
+                args.approaches
             ):
 
                 (
@@ -684,9 +710,7 @@ def main() -> None:
                     placement=placement,
                     instance_name=instance_name,
                     budget=budget,
-                    reversal_policy=(
-                        reversal_policy
-                    ),
+                    approach=approach,
                 )
 
                 results.append(result)

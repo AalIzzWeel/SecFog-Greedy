@@ -151,10 +151,10 @@ def validate_placement(
             security_state[node]
         )
 
-        if state_capabilities != available_capabilities:
+        if not state_capabilities.issubset(available_capabilities):
             raise ValueError(
                 f"Le capability di {node} nel placement "
-                "non coincidono con quelle disponibili "
+                "non sono un sottoinsieme di quelle disponibili "
                 "per il nodo."
             )
 
@@ -179,7 +179,9 @@ def validate_placement(
                 )
 
             if level is None:
-                continue
+                raise ValueError(
+                    f"La capability {node}.{capability} deve essere attiva."
+                )
 
             valid_levels = catalog_capabilities[
                 capability
@@ -239,25 +241,6 @@ def build_final_policy(
 
         if initial_level == final_level:
             continue
-
-        if initial_level is None:
-            if final_level is None:
-                continue
-
-            policy.append(
-                Action.add(
-                    node,
-                    capability,
-                    final_level,
-                )
-            )
-            continue
-
-        if final_level is None:
-            raise ValueError(
-                "Una capability inizialmente attiva "
-                "non puo' essere disattivata."
-            )
 
         policy.append(
             Action.modify(

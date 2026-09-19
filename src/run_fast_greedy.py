@@ -11,7 +11,10 @@ from optimizer.utils import (
     load_placement,
 )
 from scoring.score_wrapper import ScoreWrapper
-from src.fast_greedy import FastGreedyOptimizer
+from src.fast_greedy import (
+    FastGreedyOptimizer,
+    build_downgrade_then_upgrade_input,
+)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -96,12 +99,12 @@ def main() -> None:
     )
 
     parser.add_argument(
-        "--reversal-policy",
-        choices=("allow", "forbid"),
-        default="allow",
+        "--approach",
+        choices=("upgrade-then-downgrade", "downgrade-then-upgrade"),
+        default="upgrade-then-downgrade",
         help=(
-            "Consente oppure vieta il downgrade "
-            "di capability migliorate in passi precedenti."
+            "Strategia sperimentale. La seconda parte da tutte le "
+            "capability a L0 e aggiunge al budget il costo liberato."
         ),
     )
 
@@ -142,10 +145,13 @@ def main() -> None:
         application=application,
         placement=placement,
         score_wrapper=wrapper,
-        allow_reversal=(
-            args.reversal_policy == "allow"
-        ),
     )
+
+    effective_budget = args.budget
+    if args.approach == "downgrade-then-upgrade":
+        initial_state, effective_budget = build_downgrade_then_upgrade_input(
+            initial_state, args.budget, optimizer.costs
+        )
 
     (
         final_state,
@@ -154,7 +160,7 @@ def main() -> None:
         history,
     ) = optimizer.optimize(
         initial_state,
-        args.budget,
+        effective_budget,
     )
 
     print("\n" + "=" * 90)
@@ -165,8 +171,8 @@ def main() -> None:
     )
 
     print(
-        "Politica reversal: "
-        f"{args.reversal_policy}"
+        "Approccio       : "
+        f"{args.approach}"
     )
 
     print(
@@ -197,16 +203,16 @@ def main() -> None:
             f"{step.step_number:2d}. "
             f"{description} | "
             f"costo_netto={step.cost:+4d} | "
-            f"beneficio={step.benefit:+.8f} | "
+            f"qualita_specifica={step.specific_quality:+.8f} | "
             f"efficienza={step.efficiency:.10f} | "
-            f"priorita_nodo={step.node_priority:.8f}"
+            f"downgrade={len(step.downgrades)}"
         )
 
     display_solution_summary(
         initial_state,
         final_state,
         final_score,
-        args.budget,
+        effective_budget,
         remaining_budget,
     )
 

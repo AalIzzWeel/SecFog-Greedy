@@ -25,49 +25,28 @@
   "application": "scalable_app_5",
   "operator": "appOp",
   "security_state": {
-    "cloud4": {
-      "authentication": 1,
-      "public_key_cryptography": null,
-      "network_ids": 1,
-      "encrypted_storage": 1,
-      "access_control": null,
-      "backup": 2,
-      "firewall": 1,
-      "resource_monitoring": 0,
-      "host_ids": 0,
-      "access_logs": 1
-    },
     "edge14": {
-      "authentication": 0,
-      "public_key_cryptography": 0,
-      "network_ids": 1,
-      "encrypted_storage": null,
-      "obfuscated_storage": 1,
-      "access_control": 1,
-      "anti_tampering": 2,
-      "backup": 1,
-      "firewall": 1,
-      "resource_monitoring": 1,
-      "host_ids": null,
+      "access_control": 0,
       "access_logs": 0,
-      "wireless_security": 1,
-      "iot_data_encryption": 2
+      "anti_tampering": 0,
+      "firewall": 2,
+      "iot_data_encryption": 1,
+      "network_ids": 0,
+      "resource_monitoring": 1,
+      "wireless_security": 2
+    },
+    "cloud4": {
+      "backup": 1,
+      "encrypted_storage": 2,
+      "firewall": 2,
+      "host_ids": 1,
+      "network_ids": 2
     },
     "edge17": {
-      "authentication": null,
-      "public_key_cryptography": 1,
-      "network_ids": 1,
-      "encrypted_storage": 0,
-      "obfuscated_storage": null,
-      "access_control": 1,
-      "anti_tampering": 0,
-      "backup": 0,
-      "firewall": 0,
-      "resource_monitoring": 0,
-      "host_ids": 0,
       "access_logs": 0,
-      "wireless_security": null,
-      "iot_data_encryption": null
+      "firewall": 2,
+      "network_ids": 0,
+      "resource_monitoring": 0
     }
   }
 }

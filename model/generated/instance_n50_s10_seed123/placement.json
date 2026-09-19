@@ -45,133 +45,58 @@
   "application": "scalable_app_10",
   "operator": "appOp",
   "security_state": {
-    "cloud1": {
-      "authentication": 2,
-      "public_key_cryptography": 0,
-      "network_ids": 1,
-      "encrypted_storage": 0,
-      "access_control": 1,
-      "backup": 0,
-      "firewall": 1,
-      "resource_monitoring": 1,
-      "host_ids": null,
-      "access_logs": 1
-    },
-    "cloud12": {
-      "authentication": null,
-      "public_key_cryptography": 0,
-      "network_ids": 1,
-      "encrypted_storage": 1,
-      "access_control": 1,
-      "backup": 0,
-      "firewall": 0,
-      "resource_monitoring": null,
-      "host_ids": 0,
-      "access_logs": null
-    },
     "cloud3": {
-      "authentication": 2,
-      "public_key_cryptography": 0,
-      "network_ids": 1,
-      "encrypted_storage": 0,
       "access_control": 0,
-      "backup": 1,
-      "firewall": 1,
-      "resource_monitoring": 1,
-      "host_ids": null,
-      "access_logs": null
-    },
-    "cloud4": {
       "authentication": 0,
-      "public_key_cryptography": 1,
-      "network_ids": 0,
-      "encrypted_storage": null,
-      "access_control": 0,
-      "backup": 0,
-      "firewall": 0,
-      "resource_monitoring": 1,
-      "host_ids": 2,
-      "access_logs": 0
-    },
-    "edge12": {
-      "authentication": 1,
-      "public_key_cryptography": 1,
-      "network_ids": 1,
-      "encrypted_storage": 0,
-      "obfuscated_storage": 0,
-      "access_control": 1,
-      "anti_tampering": 1,
-      "backup": 1,
-      "firewall": 0,
-      "resource_monitoring": 0,
-      "host_ids": 1,
-      "access_logs": 0,
-      "wireless_security": 1,
-      "iot_data_encryption": 0
-    },
-    "edge21": {
-      "authentication": 0,
-      "public_key_cryptography": 1,
-      "network_ids": 0,
-      "encrypted_storage": 0,
-      "obfuscated_storage": null,
-      "access_control": 0,
-      "anti_tampering": null,
-      "backup": 1,
-      "firewall": null,
-      "resource_monitoring": 0,
-      "host_ids": 0,
-      "access_logs": 2,
-      "wireless_security": 0,
-      "iot_data_encryption": 0
-    },
-    "edge3": {
-      "authentication": 0,
-      "public_key_cryptography": 1,
-      "network_ids": 2,
-      "encrypted_storage": 0,
-      "obfuscated_storage": null,
-      "access_control": 0,
-      "anti_tampering": null,
-      "backup": 1,
-      "firewall": 2,
-      "resource_monitoring": 0,
-      "host_ids": 0,
-      "access_logs": 0,
-      "wireless_security": 1,
-      "iot_data_encryption": 0
+      "backup": 2,
+      "encrypted_storage": 1,
+      "public_key_cryptography": 2
     },
     "edge6": {
-      "authentication": 1,
-      "public_key_cryptography": 0,
-      "network_ids": 1,
-      "encrypted_storage": 2,
-      "obfuscated_storage": 2,
-      "access_control": 1,
-      "anti_tampering": 0,
-      "backup": 0,
-      "firewall": 0,
-      "resource_monitoring": 0,
-      "host_ids": 1,
       "access_logs": 2,
-      "wireless_security": 0,
-      "iot_data_encryption": 0
+      "authentication": 0,
+      "backup": 1,
+      "encrypted_storage": 0,
+      "obfuscated_storage": 2,
+      "public_key_cryptography": 1,
+      "resource_monitoring": 2
+    },
+    "edge3": {
+      "access_control": 2,
+      "access_logs": 0,
+      "anti_tampering": 0,
+      "host_ids": 2,
+      "network_ids": 2,
+      "resource_monitoring": 0
+    },
+    "cloud4": {
+      "access_control": 1,
+      "authentication": 2,
+      "public_key_cryptography": 2
+    },
+    "edge12": {
+      "access_control": 1,
+      "anti_tampering": 2,
+      "firewall": 0,
+      "network_ids": 1
     },
     "edge9": {
-      "authentication": 2,
-      "public_key_cryptography": 0,
-      "network_ids": 0,
-      "encrypted_storage": null,
-      "obfuscated_storage": null,
-      "access_control": 1,
-      "anti_tampering": 0,
-      "backup": 1,
-      "firewall": 1,
-      "resource_monitoring": 0,
-      "host_ids": null,
       "access_logs": 1,
-      "wireless_security": 0,
-      "iot_data_encryption": 0
+      "authentication": 0,
+      "public_key_cryptography": 1,
+      "resource_monitoring": 0
+    },
+    "cloud12": {
+      "firewall": 1,
+      "host_ids": 0,
+      "network_ids": 0
+    },
+    "cloud1": {
+      "access_control": 1
+    },
+    "edge21": {
+      "authentication": 2,
+      "public_key_cryptography": 2
     }
   }
 }

@@ -1,43 +1,87 @@
 # Modulo `src`
 
+Contiene l'implementazione del **Gain-Based Greedy Reallocation** e il relativo runner da riga di comando.
+
 ## `fast_greedy.py`
 
-Implementa `FastGreedyOptimizer` e `FastGreedyStep`.
+### `FastGreedyStep`
+
+Rappresenta un passo dell'algoritmo greedy. 
+Ogni elemento della history registra:
+
+| Campo | Significato |
+| --- | --- |
+| `step_number` | Posizione della mossa nella run. |
+| `action` | Upgrade selezionato. |
+| `cost` | Costo netto dello step. |
+| `specific_quality` | Guadagno euristico netto dello step. |
+| `efficiency` | Efficienza dell'upgrade obiettivo. |
+| `remaining_budget` | Budget residuo dopo lo step. |
+| `downgrades` | Eventuali downgrade usati per finanziare l'upgrade. |
+
+`is_reallocation` è vero quando `downgrades` non è vuoto. 
+
+### `build_downgrade_then_upgrade_input`
+
+Costruisce l'input del secondo approccio sperimentale (`downgrade_then_upgrade`):
+
+1. copia lo stato iniziale;
+2. porta a `L0` ogni capability attiva;
+3. calcola il costo liberato;
+4. lo aggiunge al budget fornito.
+
+La funzione richiede che ogni capability disponga di `L0` e non rimuove alcuna coppia nodo-capability.
+
+### `FastGreedyOptimizer`
+
+`optimize(initial_state, budget)` esegue il seguente ciclo:
+
+1. genera una sola volta tutte le transizioni adiacenti* di upgrade e downgrade rilevanti;
+    * Per adiacenti si intende che l'algoritmo considera solo passaggi tra livelli consecutivi e non sono ammessi salti come, ad esempio, L0 a L2. Quindi, genera:
+        * L0 → L1 e L1 → L2 per gli upgrade;
+        * L2 → L1 e L1 → L0 per i downgrade.
+2. valuta con SecFog lo stato iniziale;
+3. applica, nell'ordine euristico, tutti gli upgrade fattibili e finanziabili;
+4. aggiorna lo score dopo il gruppo di upgrade diretti;
+5. se il primo upgrade ancora fattibile non è finanziabile, accumula downgrade fino a coprire il budget mancante;
+6. applica tentativamente downgrade e upgrade;
+7. accetta l'intera riallocazione solo se lo score SecFog aumenta;
+8. termina quando non esistono altre mosse fattibili, non è possibile finanziare il prossimo upgrade oppure una riallocazione non migliora lo score.
+
+Una capability migliorata durante la run viene inserita in `improved_capabilities` e non può essere successivamente declassata.
+
+Il metodo restituisce:
 
 ```python
-@dataclass(frozen=True)
-class FastGreedyStep:
-    """Rappresenta una scelta eseguita dal greedy veloce."""
-
-    step_number: int
-    action: Action
-    cost: int
-    benefit: float
-    efficiency: float
-    node_priority: float
-    remaining_budget: int
-    downgrade: Action | None = None
-
-    @property
-    def is_reallocation(self) -> bool:
-        return self.downgrade is not None
+(final_state, remaining_budget, final_score, history)
 ```
-
-La ricerca usa l'euristica di `optimizer/heuristic.py` invece di interrogare SecFog per ogni candidato. SecFog viene usato dal `ScoreWrapper` per lo score iniziale e finale. Ogni step può essere:
-
-- un miglioramento diretto (`ADD` o upgrade `MODIFY`);
-- una riallocazione atomica composta da downgrade + miglioramento.
-
-Il budget è aggiornato con il costo netto della mossa. 
-
-La politica `allow_reversal` controlla se una capability migliorata in precedenza può successivamente essere usata come sorgente di downgrade.
 
 ## `run_fast_greedy.py`
 
-Runner da riga di comando:
+Esecuzione predefinita:
 
 ```bash
-python3 -m src.run_fast_greedy --budget 300 --reversal-policy allow
+python3 -m src.run_fast_greedy
 ```
 
-Carica catalogo, infrastruttura, applicazione e placement, costruisce lo stato iniziale, esegue il fast greedy e stampa history, score finale, budget residuo e numero di valutazioni reali ProbLog.
+Con approccio e budget espliciti:
+
+```bash
+python3 -m src.run_fast_greedy \
+  --budget 300 \
+  --approach downgrade-then-upgrade
+```
+
+Opzioni:
+
+| Opzione | Valore predefinito |
+| --- | --- |
+| `--budget` | `300` |
+| `--approach` | `upgrade-then-downgrade` |
+| `--catalog` | `model/security_catalog.json` |
+| `--infrastructure` | Infrastruttura di `instance_n25_s5_seed42` |
+| `--application` | Applicazione di `instance_n25_s5_seed42` |
+| `--placement` | Placement di `instance_n25_s5_seed42` |
+| `--base` | `prolog/secfog_base.pl` |
+
+L'output mostra score iniziale e finale, history degli step, costo netto, budget residuo, policy finale e numero di valutazioni reali ProbLog.

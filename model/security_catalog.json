@@ -1,6 +1,5 @@
 {
   "actions": {
-    "allow_add": true,
     "allow_modify": true
   },
   "capabilities": {
@@ -294,92 +293,6 @@
         }
       }
     }
-  },
-  "nodes": {
-    "cloud1": {
-      "type": "cloud",
-      "operator": "cloudOp",
-      "capabilities": [
-        "authentication",
-        "public_key_cryptography",
-        "firewall",
-        "backup",
-        "encrypted_storage",
-        "network_ids",
-        "resource_monitoring",
-        "host_ids",
-        "access_logs",
-        "access_control"
-      ]
-    },
-    "cloud2": {
-      "type": "cloud",
-      "operator": "cloudOp",
-      "capabilities": [
-        "authentication",
-        "public_key_cryptography",
-        "firewall",
-        "backup",
-        "encrypted_storage",
-        "network_ids",
-        "resource_monitoring",
-        "host_ids",
-        "access_logs",
-        "access_control"
-      ]
-    },
-    "edge1": {
-      "type": "edge",
-      "operator": "edgeOp",
-      "capabilities": [
-        "authentication",
-        "public_key_cryptography",
-        "firewall",
-        "wireless_security",
-        "iot_data_encryption",
-        "resource_monitoring",
-        "obfuscated_storage",
-        "anti_tampering",
-        "host_ids",
-        "network_ids",
-        "access_logs"
-      ]
-    },
-    "edge2": {
-      "type": "edge",
-      "operator": "edgeOp",
-      "capabilities": [
-        "authentication",
-        "public_key_cryptography",
-        "firewall",
-        "wireless_security",
-        "iot_data_encryption",
-        "resource_monitoring",
-        "obfuscated_storage",
-        "anti_tampering",
-        "host_ids",
-        "network_ids",
-        "access_logs"
-      ]
-    },
-    "edge3": {
-      "type": "edge",
-      "operator": "edgeOp",
-      "capabilities": [
-        "authentication",
-        "public_key_cryptography",
-        "firewall",
-        "resource_monitoring",
-        "host_ids",
-        "network_ids",
-        "backup",
-        "encrypted_storage",
-        "access_logs",
-        "access_control",
-        "anti_tampering",
-        "wireless_security",
-        "iot_data_encryption"
-      ]
-    }
   }
+
 }

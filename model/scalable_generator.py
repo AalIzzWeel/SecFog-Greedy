@@ -6,6 +6,7 @@ from optimizer.utils import (
     get_applicable_capabilities,
     save_json,
 )
+from optimizer.requirements import required_capabilities
 
 
 SERVICE_CLASSES = {
@@ -485,47 +486,18 @@ def generate_security_state(
     application: dict,
     catalog: dict,
     seed: int = 42,
-) -> dict[str, dict[str, int | None]]:
+) -> dict[str, dict[str, int]]:
     """
     Genera lo stato iniziale delle security capability.
 
-    Prima assegna livelli casuali alle capability applicabili dei
-    nodi usati dal placement. Poi garantisce che i requirement
-    di tutti i servizi siano soddisfatti sul nodo assegnato.
+    Attiva esclusivamente le capability menzionate dai security
+    requirement dei servizi ospitati, assegnando loro un livello.
+    I nodi sono ordinati per numero decrescente di requirement.
     """
     rng = random.Random(seed)
 
-    used_nodes = {
-        component["node"]
-        for component in placement["components"]
-    }
-
-    security_state = {}
-
-    for node_name in sorted(used_nodes):
-        node_type = infrastructure["nodes"][
-            node_name
-        ]["type"]
-
-        capabilities = get_applicable_capabilities(
-            catalog,
-            node_type,
-        )
-
-        node_state = {}
-
-        for capability_name in capabilities:
-            level = rng.choices(
-                population=[None, 0, 1, 2],
-                weights=[0.2, 0.4, 0.3, 0.1],
-                k=1,
-            )[0]
-
-            node_state[capability_name] = level
-
-        security_state[node_name] = node_state
-
     services = application["services"]
+    requirements_by_node: dict[str, list] = {}
 
     for component in placement["components"]:
         service_name = component["name"]
@@ -560,13 +532,34 @@ def generate_security_state(
                 f"applicabili al nodo {node_name}."
             )
 
-        ensure_requirement_satisfied(
-            requirement,
-            node_type,
-            security_state[node_name],
-            catalog,
-            rng,
-        )
+        requirements_by_node.setdefault(node_name, []).append(requirement)
+
+    ordered_nodes = sorted(
+        requirements_by_node,
+        key=lambda node: (
+            -sum(
+                len(required_capabilities(requirement))
+                for requirement in requirements_by_node[node]
+            ),
+            node,
+        ),
+    )
+    security_state: dict[str, dict[str, int]] = {}
+    for node_name in ordered_nodes:
+        node_type = infrastructure["nodes"][node_name]["type"]
+        active_capabilities: set[str] = set()
+        for requirement in requirements_by_node[node_name]:
+            active_capabilities.update(required_capabilities(requirement))
+
+        node_state = {}
+        for capability_name in sorted(active_capabilities):
+            capability = catalog["capabilities"][capability_name]
+            applicable_to = capability.get("applicable_to", [])
+            if applicable_to and node_type not in applicable_to:
+                continue
+            levels = sorted(map(int, capability["levels"]))
+            node_state[capability_name] = rng.choice(levels)
+        security_state[node_name] = node_state
 
     return security_state
 

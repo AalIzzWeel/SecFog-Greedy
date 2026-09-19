@@ -333,7 +333,18 @@ class ScoreWrapper:
             if node not in nodes:
                 nodes.append(node)
 
-        lines = []
+        # ProbLog solleva UnknownClause se un predicato menzionato in un
+        # security requirement non compare in nessun fatto dell'istanza.
+        # I fatti fittizi a probabilita' zero dichiarano tutti i predicati
+        # del catalogo senza attivare capability su alcun nodo reale.
+        lines = [
+            "%%% DECLARED SECURITY CAPABILITY PREDICATES %%%",
+            *(
+                f"0.0::{capability}(secfog_dummy)."
+                for capability in sorted(capabilities)
+            ),
+            "",
+        ]
 
         for node_name in nodes:
             facts_by_category = {

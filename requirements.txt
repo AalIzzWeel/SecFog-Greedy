@@ -1,2 +1,5 @@
 problog
 pytest
+matplotlib 
+numpy 
+pandas
