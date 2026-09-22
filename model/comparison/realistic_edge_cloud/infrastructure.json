@@ -1,0 +1,12 @@
+{
+  "nodes": {
+    "edge1": {
+      "type": "edge",
+      "operator": "edgeOp"
+    },
+    "cloud1": {
+      "type": "cloud",
+      "operator": "cloudOp"
+    }
+  }
+}

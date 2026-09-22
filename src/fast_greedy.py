@@ -154,7 +154,12 @@ class FastGreedyOptimizer:
                 feasible = first_feasible(
                     tentative_downgrades,
                     tentative_state,
-                    blocked_keys=improved_capabilities,
+                    # Non declassare la capability che stiamo per
+                    # migliorare: altrimenti target.old_level non sarebbe
+                    # piu' coerente con lo stato provvisorio.
+                    blocked_keys=(
+                        improved_capabilities | {target.action.key}
+                    ),
                 )
                 if feasible is None:
                     return state, remaining_budget, score, history

@@ -1,0 +1,51 @@
+{
+  "name": "realistic_edge_cloud_app_communication",
+  "services": {
+    "edge_service": {
+      "class": "comparison",
+      "profiles": [
+        "intrusion_detection",
+        "network_protection"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          }
+        ]
+      }
+    },
+    "cloud_service": {
+      "class": "comparison",
+      "profiles": [
+        "secure_communication",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

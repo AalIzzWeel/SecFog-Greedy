@@ -1,0 +1,27 @@
+{
+  "name": "realistic_edge_cloud_network",
+  "application": "realistic_edge_cloud_app_network",
+  "operator": "appOp",
+  "components": [
+    {
+      "name": "edge_service",
+      "node": "edge1"
+    },
+    {
+      "name": "cloud_service",
+      "node": "cloud1"
+    }
+  ],
+  "security_state": {
+    "edge1": {
+      "firewall": 1,
+      "host_ids": 1,
+      "network_ids": 1
+    },
+    "cloud1": {
+      "access_control": 1,
+      "firewall": 1,
+      "network_ids": 1
+    }
+  }
+}

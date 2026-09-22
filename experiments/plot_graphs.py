@@ -129,10 +129,14 @@ def validate_columns(df: pd.DataFrame) -> None:
 
 
 def save_figure(fig, filename: str) -> None:
-    """Salva un grafico vettoriale PDF adatto alla tesi."""
-    output_path = OUTPUT_DIR / filename
-    fig.savefig(output_path, bbox_inches="tight")
-    print(f"Grafico salvato: {output_path}")
+    """Salva il grafico sia in PDF vettoriale sia in PNG."""
+    pdf_path = OUTPUT_DIR / filename
+    png_path = pdf_path.with_suffix(".png")
+
+    fig.savefig(pdf_path, bbox_inches="tight")
+    fig.savefig(png_path, dpi=180, bbox_inches="tight")
+    print(f"Grafico salvato: {pdf_path}")
+    print(f"Grafico salvato: {png_path}")
     plt.close(fig)
 
 

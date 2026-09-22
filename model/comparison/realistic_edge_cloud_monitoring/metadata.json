@@ -1,0 +1,23 @@
+{
+  "family": "deterministic_realistic_edge_cloud",
+  "scenario": "monitoring",
+  "nodes": 2,
+  "services": 2,
+  "state_pairs": 6,
+  "initial_cost": 900,
+  "capabilities_by_node": {
+    "edge1": [
+      "backup",
+      "encrypted_storage",
+      "obfuscated_storage"
+    ],
+    "cloud1": [
+      "access_control",
+      "access_logs",
+      "resource_monitoring"
+    ]
+  },
+  "catalog_source": "security_catalog.json",
+  "profiles_source": "requirement_profiles.json",
+  "description": "L'ottimo non e' predefinito: viene calcolato dalla ricerca esaustiva per ciascun budget."
+}

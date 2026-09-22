@@ -1,0 +1,27 @@
+{
+  "name": "realistic_edge_cloud_monitoring",
+  "application": "realistic_edge_cloud_app_monitoring",
+  "operator": "appOp",
+  "components": [
+    {
+      "name": "edge_service",
+      "node": "edge1"
+    },
+    {
+      "name": "cloud_service",
+      "node": "cloud1"
+    }
+  ],
+  "security_state": {
+    "edge1": {
+      "backup": 1,
+      "encrypted_storage": 1,
+      "obfuscated_storage": 1
+    },
+    "cloud1": {
+      "access_control": 1,
+      "access_logs": 1,
+      "resource_monitoring": 1
+    }
+  }
+}

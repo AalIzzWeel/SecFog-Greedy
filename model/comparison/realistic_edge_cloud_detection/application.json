@@ -1,0 +1,45 @@
+{
+  "name": "realistic_edge_cloud_app_detection",
+  "services": {
+    "edge_service": {
+      "class": "comparison",
+      "profiles": [
+        "secure_storage"
+      ],
+      "requirements": {
+        "all": [
+          "backup",
+          {
+            "any": [
+              "encrypted_storage",
+              "obfuscated_storage"
+            ]
+          }
+        ]
+      }
+    },
+    "cloud_service": {
+      "class": "comparison",
+      "profiles": [
+        "intrusion_detection",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

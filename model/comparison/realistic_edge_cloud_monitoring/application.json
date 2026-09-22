@@ -1,0 +1,45 @@
+{
+  "name": "realistic_edge_cloud_app_monitoring",
+  "services": {
+    "edge_service": {
+      "class": "comparison",
+      "profiles": [
+        "secure_storage"
+      ],
+      "requirements": {
+        "all": [
+          "backup",
+          {
+            "any": [
+              "encrypted_storage",
+              "obfuscated_storage"
+            ]
+          }
+        ]
+      }
+    },
+    "cloud_service": {
+      "class": "comparison",
+      "profiles": [
+        "monitoring",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
