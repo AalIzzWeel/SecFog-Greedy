@@ -1,0 +1,34 @@
+{
+  "name": "comparison_n3_s3_seed999",
+  "application": "comparison_app_n3_s3_seed999",
+  "operator": "appOp",
+  "components": [
+    {
+      "name": "edge_service1",
+      "node": "edge1"
+    },
+    {
+      "name": "cloud_service",
+      "node": "cloud1"
+    },
+    {
+      "name": "edge_service2",
+      "node": "edge2"
+    }
+  ],
+  "security_state": {
+    "edge1": {
+      "access_control": 1,
+      "anti_tampering": 1
+    },
+    "cloud1": {
+      "access_control": 1,
+      "backup": 1,
+      "encrypted_storage": 1
+    },
+    "edge2": {
+      "authentication": 1,
+      "public_key_cryptography": 1
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "services": {
+    "service1": {
+      "class": "light",
+      "profiles": [
+        "secure_communication"
+      ],
+      "requirements": {
+        "all": [
+          "authentication",
+          "public_key_cryptography"
+        ]
+      }
+    },
+    "service2": {
+      "class": "medium",
+      "profiles": [
+        "physical_security",
+        "secure_storage"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          },
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "service3": {
+      "class": "medium",
+      "profiles": [
+        "intrusion_detection",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "host_ids",
+              "network_ids"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "service4": {
+      "class": "medium",
+      "profiles": [
+        "secure_storage",
+        "monitoring"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "backup",
+              {
+                "any": [
+                  "encrypted_storage",
+                  "obfuscated_storage"
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              "resource_monitoring",
+              "access_logs"
+            ]
+          }
+        ]
+      }
+    },
+    "service5": {
+      "class": "heavy",
+      "profiles": [
+        "secure_communication",
+        "edge_communication",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "authentication",
+              "public_key_cryptography"
+            ]
+          },
+          {
+            "all": [
+              "wireless_security",
+              "iot_data_encryption"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "name": "scalable_app_5"
+}

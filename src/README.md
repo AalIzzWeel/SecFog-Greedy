@@ -2,7 +2,7 @@
 
 Contiene i due algoritmi confrontati nel progetto:
 
-- **Fast Greedy (GUBR)**: ricerca euristica rapida guidata da qualità specifica ed efficienza;
+- **Fast Greedy (GBGR)**: ricerca euristica rapida guidata da qualità specifica ed efficienza;
 - **Exhaustive OR-Tools**: enumerazione di tutte le configurazioni ammissibili e valutazione di ciascuna tramite SecFog.
 
 Il placement e l'insieme delle coppie `(nodo, capability)` restano invariati. Gli algoritmi modificano esclusivamente i livelli delle capability già attive; anche `L0` è un livello attivo, con costo ed efficacia propri.
@@ -51,7 +51,7 @@ Gli upgrade sono ordinati per efficienza decrescente. I downgrade sono ordinati 
 4. valuta con SecFog lo stato ottenuto dal gruppo di upgrade;
 5. se il miglior upgrade fattibile non è finanziabile, accumula downgrade fino a coprire il budget mancante;
 6. applica provvisoriamente l'intera riallocazione;
-7. la conferma solo se lo score SecFog aumenta di più della tolleranza numerica;
+7. la conferma solo se lo score SecFog aumenta di più della tolleranza relativa `1e-12 * max(abs(score_nuovo), abs(score_corrente))`;
 8. termina quando non restano upgrade fattibili, non è possibile finanziare il prossimo upgrade o la riallocazione tentata non migliora lo score.
 
 Una capability già migliorata viene inserita in `improved_capabilities` e non può essere successivamente usata come sorgente di downgrade.
@@ -154,13 +154,13 @@ Usare istanze piccole, perché ogni configurazione ammissibile richiede una valu
 ```bash
 python3 -m src.run_exhaustive_or_tools \
   --budget 300 \
-  --infrastructure model/comparison/realistic_edge_cloud_storage/infrastructure.json \
-  --application model/comparison/realistic_edge_cloud_storage/application.json \
-  --placement model/comparison/realistic_edge_cloud_storage/placement.json \
-  --catalog model/comparison/realistic_edge_cloud_storage/catalog.json
+  --infrastructure model/comparison/comparison_n3_s3_seed42/infrastructure.json \
+  --application model/comparison/comparison_n3_s3_seed42/application.json \
+  --placement model/comparison/comparison_n3_s3_seed42/placement.json \
+  --catalog model/comparison/comparison_n3_s3_seed42/catalog.json
 ```
 
-Limiti opzionali (aggiunti per possibili estensioni future):
+Limiti opzionali:
 
 ```bash
 python3 -m src.run_exhaustive_or_tools \

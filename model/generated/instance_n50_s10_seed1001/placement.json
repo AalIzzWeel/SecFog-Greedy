@@ -1,0 +1,102 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "edge19"
+    },
+    {
+      "name": "service2",
+      "node": "edge24"
+    },
+    {
+      "name": "service3",
+      "node": "edge12"
+    },
+    {
+      "name": "service4",
+      "node": "cloud15"
+    },
+    {
+      "name": "service5",
+      "node": "cloud10"
+    },
+    {
+      "name": "service6",
+      "node": "cloud9"
+    },
+    {
+      "name": "service7",
+      "node": "edge3"
+    },
+    {
+      "name": "service8",
+      "node": "edge31"
+    },
+    {
+      "name": "service9",
+      "node": "cloud9"
+    },
+    {
+      "name": "service10",
+      "node": "edge26"
+    }
+  ],
+  "name": "placement_n50_s10",
+  "application": "scalable_app_10",
+  "operator": "appOp",
+  "security_state": {
+    "cloud9": {
+      "access_logs": 1,
+      "authentication": 2,
+      "host_ids": 1,
+      "network_ids": 0,
+      "public_key_cryptography": 2,
+      "resource_monitoring": 1
+    },
+    "edge26": {
+      "access_logs": 1,
+      "backup": 2,
+      "encrypted_storage": 1,
+      "firewall": 1,
+      "network_ids": 0,
+      "obfuscated_storage": 2,
+      "resource_monitoring": 1
+    },
+    "cloud15": {
+      "backup": 0,
+      "encrypted_storage": 1,
+      "firewall": 2,
+      "network_ids": 1
+    },
+    "edge3": {
+      "backup": 2,
+      "encrypted_storage": 0,
+      "firewall": 1,
+      "network_ids": 1,
+      "obfuscated_storage": 2
+    },
+    "cloud10": {
+      "access_control": 2,
+      "firewall": 2,
+      "network_ids": 2
+    },
+    "edge31": {
+      "host_ids": 2,
+      "iot_data_encryption": 0,
+      "network_ids": 2,
+      "wireless_security": 0
+    },
+    "edge12": {
+      "firewall": 2,
+      "network_ids": 2
+    },
+    "edge19": {
+      "firewall": 2,
+      "network_ids": 0
+    },
+    "edge24": {
+      "access_control": 1,
+      "anti_tampering": 0
+    }
+  }
+}

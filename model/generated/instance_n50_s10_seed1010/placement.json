@@ -1,0 +1,109 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "edge24"
+    },
+    {
+      "name": "service2",
+      "node": "edge2"
+    },
+    {
+      "name": "service3",
+      "node": "cloud2"
+    },
+    {
+      "name": "service4",
+      "node": "edge12"
+    },
+    {
+      "name": "service5",
+      "node": "cloud12"
+    },
+    {
+      "name": "service6",
+      "node": "edge28"
+    },
+    {
+      "name": "service7",
+      "node": "edge14"
+    },
+    {
+      "name": "service8",
+      "node": "edge11"
+    },
+    {
+      "name": "service9",
+      "node": "edge29"
+    },
+    {
+      "name": "service10",
+      "node": "edge33"
+    }
+  ],
+  "name": "placement_n50_s10",
+  "application": "scalable_app_10",
+  "operator": "appOp",
+  "security_state": {
+    "edge29": {
+      "backup": 1,
+      "encrypted_storage": 0,
+      "firewall": 0,
+      "iot_data_encryption": 1,
+      "network_ids": 0,
+      "obfuscated_storage": 2,
+      "wireless_security": 0
+    },
+    "edge33": {
+      "access_control": 1,
+      "access_logs": 1,
+      "anti_tampering": 2,
+      "iot_data_encryption": 1,
+      "resource_monitoring": 2,
+      "wireless_security": 2
+    },
+    "edge11": {
+      "backup": 0,
+      "encrypted_storage": 2,
+      "host_ids": 0,
+      "network_ids": 1,
+      "obfuscated_storage": 1
+    },
+    "edge12": {
+      "backup": 0,
+      "encrypted_storage": 1,
+      "firewall": 1,
+      "network_ids": 0,
+      "obfuscated_storage": 1
+    },
+    "edge14": {
+      "backup": 2,
+      "encrypted_storage": 0,
+      "host_ids": 1,
+      "network_ids": 1,
+      "obfuscated_storage": 2
+    },
+    "cloud12": {
+      "access_control": 1,
+      "access_logs": 0,
+      "resource_monitoring": 0
+    },
+    "edge28": {
+      "firewall": 2,
+      "host_ids": 1,
+      "network_ids": 2
+    },
+    "cloud2": {
+      "firewall": 0,
+      "network_ids": 1
+    },
+    "edge2": {
+      "access_logs": 2,
+      "resource_monitoring": 2
+    },
+    "edge24": {
+      "iot_data_encryption": 1,
+      "wireless_security": 0
+    }
+  }
+}

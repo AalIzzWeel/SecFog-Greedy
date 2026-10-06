@@ -1,0 +1,855 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "cloud33"
+    },
+    {
+      "name": "service2",
+      "node": "edge369"
+    },
+    {
+      "name": "service3",
+      "node": "cloud179"
+    },
+    {
+      "name": "service4",
+      "node": "edge79"
+    },
+    {
+      "name": "service5",
+      "node": "edge520"
+    },
+    {
+      "name": "service6",
+      "node": "edge496"
+    },
+    {
+      "name": "service7",
+      "node": "cloud182"
+    },
+    {
+      "name": "service8",
+      "node": "cloud231"
+    },
+    {
+      "name": "service9",
+      "node": "edge534"
+    },
+    {
+      "name": "service10",
+      "node": "cloud59"
+    },
+    {
+      "name": "service11",
+      "node": "edge410"
+    },
+    {
+      "name": "service12",
+      "node": "cloud202"
+    },
+    {
+      "name": "service13",
+      "node": "edge332"
+    },
+    {
+      "name": "service14",
+      "node": "cloud55"
+    },
+    {
+      "name": "service15",
+      "node": "edge218"
+    },
+    {
+      "name": "service16",
+      "node": "edge291"
+    },
+    {
+      "name": "service17",
+      "node": "edge510"
+    },
+    {
+      "name": "service18",
+      "node": "edge397"
+    },
+    {
+      "name": "service19",
+      "node": "cloud34"
+    },
+    {
+      "name": "service20",
+      "node": "cloud35"
+    },
+    {
+      "name": "service21",
+      "node": "edge207"
+    },
+    {
+      "name": "service22",
+      "node": "cloud194"
+    },
+    {
+      "name": "service23",
+      "node": "edge8"
+    },
+    {
+      "name": "service24",
+      "node": "edge485"
+    },
+    {
+      "name": "service25",
+      "node": "cloud73"
+    },
+    {
+      "name": "service26",
+      "node": "cloud124"
+    },
+    {
+      "name": "service27",
+      "node": "edge445"
+    },
+    {
+      "name": "service28",
+      "node": "edge60"
+    },
+    {
+      "name": "service29",
+      "node": "edge43"
+    },
+    {
+      "name": "service30",
+      "node": "edge467"
+    },
+    {
+      "name": "service31",
+      "node": "edge423"
+    },
+    {
+      "name": "service32",
+      "node": "edge197"
+    },
+    {
+      "name": "service33",
+      "node": "edge62"
+    },
+    {
+      "name": "service34",
+      "node": "edge57"
+    },
+    {
+      "name": "service35",
+      "node": "cloud234"
+    },
+    {
+      "name": "service36",
+      "node": "edge410"
+    },
+    {
+      "name": "service37",
+      "node": "cloud28"
+    },
+    {
+      "name": "service38",
+      "node": "edge101"
+    },
+    {
+      "name": "service39",
+      "node": "edge332"
+    },
+    {
+      "name": "service40",
+      "node": "edge94"
+    },
+    {
+      "name": "service41",
+      "node": "edge249"
+    },
+    {
+      "name": "service42",
+      "node": "cloud12"
+    },
+    {
+      "name": "service43",
+      "node": "cloud51"
+    },
+    {
+      "name": "service44",
+      "node": "edge366"
+    },
+    {
+      "name": "service45",
+      "node": "edge215"
+    },
+    {
+      "name": "service46",
+      "node": "cloud125"
+    },
+    {
+      "name": "service47",
+      "node": "edge228"
+    },
+    {
+      "name": "service48",
+      "node": "edge163"
+    },
+    {
+      "name": "service49",
+      "node": "edge51"
+    },
+    {
+      "name": "service50",
+      "node": "edge434"
+    },
+    {
+      "name": "service51",
+      "node": "edge34"
+    },
+    {
+      "name": "service52",
+      "node": "cloud34"
+    },
+    {
+      "name": "service53",
+      "node": "edge146"
+    },
+    {
+      "name": "service54",
+      "node": "edge38"
+    },
+    {
+      "name": "service55",
+      "node": "edge183"
+    },
+    {
+      "name": "service56",
+      "node": "cloud189"
+    },
+    {
+      "name": "service57",
+      "node": "cloud207"
+    },
+    {
+      "name": "service58",
+      "node": "cloud20"
+    },
+    {
+      "name": "service59",
+      "node": "edge289"
+    },
+    {
+      "name": "service60",
+      "node": "edge268"
+    },
+    {
+      "name": "service61",
+      "node": "edge226"
+    },
+    {
+      "name": "service62",
+      "node": "edge383"
+    },
+    {
+      "name": "service63",
+      "node": "cloud190"
+    },
+    {
+      "name": "service64",
+      "node": "edge253"
+    },
+    {
+      "name": "service65",
+      "node": "cloud202"
+    },
+    {
+      "name": "service66",
+      "node": "cloud118"
+    },
+    {
+      "name": "service67",
+      "node": "edge3"
+    },
+    {
+      "name": "service68",
+      "node": "cloud72"
+    },
+    {
+      "name": "service69",
+      "node": "edge133"
+    },
+    {
+      "name": "service70",
+      "node": "edge87"
+    },
+    {
+      "name": "service71",
+      "node": "edge384"
+    },
+    {
+      "name": "service72",
+      "node": "cloud8"
+    },
+    {
+      "name": "service73",
+      "node": "cloud178"
+    },
+    {
+      "name": "service74",
+      "node": "edge534"
+    },
+    {
+      "name": "service75",
+      "node": "edge148"
+    },
+    {
+      "name": "service76",
+      "node": "edge401"
+    },
+    {
+      "name": "service77",
+      "node": "edge17"
+    },
+    {
+      "name": "service78",
+      "node": "edge482"
+    },
+    {
+      "name": "service79",
+      "node": "edge397"
+    },
+    {
+      "name": "service80",
+      "node": "cloud224"
+    },
+    {
+      "name": "service81",
+      "node": "edge295"
+    },
+    {
+      "name": "service82",
+      "node": "edge99"
+    },
+    {
+      "name": "service83",
+      "node": "edge534"
+    },
+    {
+      "name": "service84",
+      "node": "edge462"
+    },
+    {
+      "name": "service85",
+      "node": "edge270"
+    },
+    {
+      "name": "service86",
+      "node": "cloud53"
+    },
+    {
+      "name": "service87",
+      "node": "edge229"
+    },
+    {
+      "name": "service88",
+      "node": "cloud184"
+    },
+    {
+      "name": "service89",
+      "node": "edge88"
+    },
+    {
+      "name": "service90",
+      "node": "edge384"
+    }
+  ],
+  "name": "placement_n800_s90",
+  "application": "scalable_app_90",
+  "operator": "appOp",
+  "security_state": {
+    "edge534": {
+      "access_control": 2,
+      "access_logs": 1,
+      "anti_tampering": 1,
+      "authentication": 0,
+      "backup": 2,
+      "encrypted_storage": 0,
+      "iot_data_encryption": 0,
+      "obfuscated_storage": 2,
+      "public_key_cryptography": 2,
+      "resource_monitoring": 0,
+      "wireless_security": 2
+    },
+    "edge384": {
+      "access_control": 2,
+      "anti_tampering": 0,
+      "firewall": 2,
+      "host_ids": 1,
+      "iot_data_encryption": 2,
+      "network_ids": 0,
+      "wireless_security": 2
+    },
+    "cloud202": {
+      "access_control": 1,
+      "backup": 1,
+      "encrypted_storage": 0
+    },
+    "edge397": {
+      "access_control": 1,
+      "access_logs": 0,
+      "anti_tampering": 2,
+      "authentication": 0,
+      "iot_data_encryption": 0,
+      "public_key_cryptography": 0,
+      "resource_monitoring": 2,
+      "wireless_security": 0
+    },
+    "cloud178": {
+      "access_control": 0,
+      "backup": 1,
+      "encrypted_storage": 1,
+      "host_ids": 0,
+      "network_ids": 0
+    },
+    "cloud53": {
+      "access_control": 0,
+      "backup": 0,
+      "encrypted_storage": 1,
+      "host_ids": 0,
+      "network_ids": 0
+    },
+    "edge148": {
+      "backup": 0,
+      "encrypted_storage": 1,
+      "host_ids": 2,
+      "iot_data_encryption": 1,
+      "network_ids": 1,
+      "obfuscated_storage": 1,
+      "wireless_security": 0
+    },
+    "edge295": {
+      "backup": 1,
+      "encrypted_storage": 1,
+      "firewall": 1,
+      "iot_data_encryption": 2,
+      "network_ids": 1,
+      "obfuscated_storage": 2,
+      "wireless_security": 1
+    },
+    "edge401": {
+      "authentication": 2,
+      "backup": 1,
+      "encrypted_storage": 2,
+      "firewall": 1,
+      "network_ids": 1,
+      "obfuscated_storage": 1,
+      "public_key_cryptography": 0
+    },
+    "edge482": {
+      "access_control": 2,
+      "anti_tampering": 2,
+      "backup": 0,
+      "encrypted_storage": 1,
+      "host_ids": 0,
+      "network_ids": 1,
+      "obfuscated_storage": 0
+    },
+    "edge88": {
+      "access_control": 0,
+      "anti_tampering": 1,
+      "backup": 1,
+      "encrypted_storage": 1,
+      "firewall": 1,
+      "network_ids": 2,
+      "obfuscated_storage": 1
+    },
+    "cloud34": {
+      "access_control": 1,
+      "access_logs": 1,
+      "resource_monitoring": 0
+    },
+    "edge17": {
+      "access_control": 2,
+      "access_logs": 2,
+      "anti_tampering": 0,
+      "firewall": 2,
+      "network_ids": 2,
+      "resource_monitoring": 0
+    },
+    "edge229": {
+      "authentication": 0,
+      "firewall": 2,
+      "iot_data_encryption": 1,
+      "network_ids": 1,
+      "public_key_cryptography": 0,
+      "wireless_security": 0
+    },
+    "edge270": {
+      "access_control": 0,
+      "access_logs": 0,
+      "anti_tampering": 2,
+      "iot_data_encryption": 0,
+      "resource_monitoring": 1,
+      "wireless_security": 1
+    },
+    "edge332": {
+      "access_logs": 2,
+      "iot_data_encryption": 1,
+      "resource_monitoring": 0,
+      "wireless_security": 2
+    },
+    "edge410": {
+      "authentication": 2,
+      "firewall": 1,
+      "network_ids": 2,
+      "public_key_cryptography": 0
+    },
+    "edge462": {
+      "access_control": 0,
+      "anti_tampering": 0,
+      "authentication": 1,
+      "host_ids": 0,
+      "network_ids": 1,
+      "public_key_cryptography": 0
+    },
+    "edge99": {
+      "access_logs": 0,
+      "authentication": 1,
+      "iot_data_encryption": 2,
+      "public_key_cryptography": 2,
+      "resource_monitoring": 2,
+      "wireless_security": 2
+    },
+    "cloud184": {
+      "authentication": 0,
+      "firewall": 0,
+      "host_ids": 1,
+      "network_ids": 2,
+      "public_key_cryptography": 0
+    },
+    "cloud189": {
+      "backup": 0,
+      "encrypted_storage": 1,
+      "firewall": 1,
+      "network_ids": 2
+    },
+    "cloud224": {
+      "access_logs": 2,
+      "firewall": 2,
+      "host_ids": 2,
+      "network_ids": 2,
+      "resource_monitoring": 1
+    },
+    "cloud72": {
+      "access_logs": 0,
+      "backup": 2,
+      "encrypted_storage": 2,
+      "resource_monitoring": 2
+    },
+    "edge163": {
+      "backup": 1,
+      "encrypted_storage": 1,
+      "firewall": 2,
+      "network_ids": 0,
+      "obfuscated_storage": 1
+    },
+    "edge215": {
+      "access_control": 0,
+      "anti_tampering": 2,
+      "backup": 2,
+      "encrypted_storage": 0,
+      "obfuscated_storage": 1
+    },
+    "edge383": {
+      "access_control": 1,
+      "anti_tampering": 0,
+      "backup": 1,
+      "encrypted_storage": 2,
+      "obfuscated_storage": 1
+    },
+    "edge51": {
+      "authentication": 0,
+      "backup": 2,
+      "encrypted_storage": 1,
+      "obfuscated_storage": 0,
+      "public_key_cryptography": 0
+    },
+    "edge94": {
+      "backup": 1,
+      "encrypted_storage": 0,
+      "iot_data_encryption": 2,
+      "obfuscated_storage": 2,
+      "wireless_security": 1
+    },
+    "cloud12": {
+      "authentication": 1,
+      "host_ids": 0,
+      "network_ids": 0,
+      "public_key_cryptography": 0
+    },
+    "cloud125": {
+      "access_control": 1,
+      "access_logs": 0,
+      "resource_monitoring": 2
+    },
+    "cloud190": {
+      "authentication": 1,
+      "firewall": 2,
+      "network_ids": 0,
+      "public_key_cryptography": 2
+    },
+    "cloud20": {
+      "access_control": 0,
+      "firewall": 2,
+      "network_ids": 0
+    },
+    "cloud207": {
+      "access_control": 2,
+      "host_ids": 2,
+      "network_ids": 0
+    },
+    "cloud28": {
+      "access_control": 0,
+      "host_ids": 1,
+      "network_ids": 2
+    },
+    "cloud51": {
+      "access_logs": 1,
+      "firewall": 0,
+      "network_ids": 1,
+      "resource_monitoring": 2
+    },
+    "cloud8": {
+      "authentication": 1,
+      "firewall": 1,
+      "network_ids": 1,
+      "public_key_cryptography": 0
+    },
+    "edge101": {
+      "access_logs": 2,
+      "host_ids": 0,
+      "network_ids": 0,
+      "resource_monitoring": 0
+    },
+    "edge133": {
+      "access_control": 1,
+      "access_logs": 1,
+      "anti_tampering": 1,
+      "resource_monitoring": 2
+    },
+    "edge146": {
+      "access_control": 1,
+      "access_logs": 2,
+      "anti_tampering": 1,
+      "resource_monitoring": 0
+    },
+    "edge183": {
+      "access_logs": 1,
+      "authentication": 0,
+      "public_key_cryptography": 0,
+      "resource_monitoring": 1
+    },
+    "edge197": {
+      "access_control": 1,
+      "access_logs": 2,
+      "anti_tampering": 0,
+      "resource_monitoring": 2
+    },
+    "edge226": {
+      "authentication": 1,
+      "host_ids": 2,
+      "network_ids": 0,
+      "public_key_cryptography": 1
+    },
+    "edge228": {
+      "access_logs": 0,
+      "host_ids": 0,
+      "network_ids": 2,
+      "resource_monitoring": 0
+    },
+    "edge249": {
+      "firewall": 0,
+      "iot_data_encryption": 2,
+      "network_ids": 1,
+      "wireless_security": 1
+    },
+    "edge268": {
+      "access_control": 0,
+      "anti_tampering": 2,
+      "host_ids": 1,
+      "network_ids": 2
+    },
+    "edge3": {
+      "access_logs": 0,
+      "firewall": 2,
+      "network_ids": 1,
+      "resource_monitoring": 1
+    },
+    "edge34": {
+      "access_control": 1,
+      "anti_tampering": 1,
+      "firewall": 0,
+      "network_ids": 0
+    },
+    "edge366": {
+      "access_logs": 0,
+      "host_ids": 0,
+      "network_ids": 2,
+      "resource_monitoring": 0
+    },
+    "edge38": {
+      "authentication": 2,
+      "host_ids": 1,
+      "network_ids": 1,
+      "public_key_cryptography": 2
+    },
+    "edge423": {
+      "access_control": 0,
+      "anti_tampering": 0,
+      "firewall": 0,
+      "network_ids": 1
+    },
+    "edge43": {
+      "access_control": 2,
+      "anti_tampering": 2,
+      "firewall": 0,
+      "network_ids": 0
+    },
+    "edge434": {
+      "access_control": 2,
+      "anti_tampering": 2,
+      "iot_data_encryption": 1,
+      "wireless_security": 2
+    },
+    "edge467": {
+      "authentication": 2,
+      "firewall": 0,
+      "network_ids": 0,
+      "public_key_cryptography": 0
+    },
+    "edge60": {
+      "firewall": 0,
+      "iot_data_encryption": 0,
+      "network_ids": 0,
+      "wireless_security": 0
+    },
+    "edge62": {
+      "access_control": 1,
+      "anti_tampering": 0,
+      "host_ids": 1,
+      "network_ids": 1
+    },
+    "edge87": {
+      "access_logs": 1,
+      "host_ids": 1,
+      "network_ids": 0,
+      "resource_monitoring": 0
+    },
+    "cloud118": {
+      "firewall": 1,
+      "host_ids": 0,
+      "network_ids": 1
+    },
+    "cloud179": {
+      "backup": 0,
+      "encrypted_storage": 2
+    },
+    "cloud234": {
+      "firewall": 0,
+      "host_ids": 0,
+      "network_ids": 1
+    },
+    "edge253": {
+      "firewall": 2,
+      "host_ids": 0,
+      "network_ids": 1
+    },
+    "edge289": {
+      "firewall": 2,
+      "host_ids": 2,
+      "network_ids": 1
+    },
+    "edge496": {
+      "backup": 1,
+      "encrypted_storage": 0,
+      "obfuscated_storage": 0
+    },
+    "edge510": {
+      "backup": 2,
+      "encrypted_storage": 0,
+      "obfuscated_storage": 2
+    },
+    "edge57": {
+      "firewall": 1,
+      "host_ids": 0,
+      "network_ids": 0
+    },
+    "cloud124": {
+      "access_control": 1
+    },
+    "cloud182": {
+      "access_logs": 0,
+      "resource_monitoring": 0
+    },
+    "cloud194": {
+      "access_control": 2
+    },
+    "cloud231": {
+      "authentication": 0,
+      "public_key_cryptography": 2
+    },
+    "cloud33": {
+      "authentication": 2,
+      "public_key_cryptography": 0
+    },
+    "cloud35": {
+      "host_ids": 0,
+      "network_ids": 0
+    },
+    "cloud55": {
+      "firewall": 0,
+      "network_ids": 0
+    },
+    "cloud59": {
+      "access_control": 2
+    },
+    "cloud73": {
+      "authentication": 1,
+      "public_key_cryptography": 1
+    },
+    "edge207": {
+      "firewall": 0,
+      "network_ids": 2
+    },
+    "edge218": {
+      "authentication": 1,
+      "public_key_cryptography": 2
+    },
+    "edge291": {
+      "iot_data_encryption": 0,
+      "wireless_security": 1
+    },
+    "edge369": {
+      "access_control": 2,
+      "anti_tampering": 2
+    },
+    "edge445": {
+      "authentication": 2,
+      "public_key_cryptography": 0
+    },
+    "edge485": {
+      "access_control": 2,
+      "anti_tampering": 1
+    },
+    "edge520": {
+      "access_control": 2,
+      "anti_tampering": 1
+    },
+    "edge79": {
+      "host_ids": 2,
+      "network_ids": 2
+    },
+    "edge8": {
+      "authentication": 2,
+      "public_key_cryptography": 0
+    }
+  }
+}

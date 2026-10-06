@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import logging
+import time
 
 from optimizer.actions import Action
 from optimizer.costs import CostCalculator
@@ -44,25 +45,48 @@ def build_downgrade_then_upgrade_input(
     budget: int,
     costs: CostCalculator,
 ) -> tuple[State, int]:
-    """Porta tutte le capability a L0 e aggiunge al budget il costo liberato."""
+    """Porta tutte le capability a L0 e recupera il costo liberato."""
     if budget < 0:
         raise ValueError("Il budget iniziale deve essere non negativo.")
+
     l0_state = initial_state.copy()
+
     for (node, capability), _level in l0_state.items():
         available_levels = sorted(
             map(int, costs.capabilities[capability]["levels"])
         )
         if 0 not in available_levels:
-            raise ValueError(f"La capability {capability} non dispone di L0.")
+            raise ValueError(
+                f"La capability {capability} non dispone di L0."
+            )
         l0_state.set_level(node, capability, 0)
-    released = costs.calculate_state_cost(initial_state) - costs.calculate_state_cost(l0_state)
+
+    released = (
+        costs.calculate_state_cost(initial_state)
+        - costs.calculate_state_cost(l0_state)
+    )
     return l0_state, budget + released
 
 
 class FastGreedyOptimizer:
     """Implementazione del Gain-Based Greedy Reallocation (GUBR)."""
 
-    EPSILON = 1e-12
+    # Tolleranza relativa: indipendente dalla scala dello score.
+    RELATIVE_EPSILON = 1e-12
+
+    @classmethod
+    def score_improved(cls, candidate: float, current: float) -> bool:
+        """Accetta solo miglioramenti superiori alla tolleranza relativa."""
+        if candidate <= current:
+            return False
+
+        if current == 0:
+            return candidate > 0
+
+        tolerance = cls.RELATIVE_EPSILON * max(
+            abs(candidate), abs(current)
+        )
+        return candidate - current > tolerance
 
     def __init__(
         self,
@@ -77,13 +101,22 @@ class FastGreedyOptimizer:
         self.placement = placement
         self.score_wrapper = score_wrapper
         self.costs = CostCalculator(catalog)
+
+        preparation_start = time.perf_counter()
         self.grouped_requirements = group_requirements_by_node(
             application, placement, catalog
         )
+        self.preparation_seconds = (
+            time.perf_counter() - preparation_start
+        )
+        self.initial_evaluation_seconds = 0.0
+        self.greedy_loop_seconds = 0.0
         self.initial_score: float | None = None
 
     def optimize(
-        self, initial_state: State, budget: int
+        self,
+        initial_state: State,
+        budget: int,
     ) -> tuple[State, int, float, list[FastGreedyStep]]:
         if budget < 0:
             raise ValueError("Il budget iniziale deve essere non negativo.")
@@ -92,11 +125,23 @@ class FastGreedyOptimizer:
         remaining_budget = budget
         history: list[FastGreedyStep] = []
         improved_capabilities: set[tuple[str, str]] = set()
+
+        preparation_start = time.perf_counter()
         upgrades, downgrades = generate_actions(
             initial_state, self.catalog, self.grouped_requirements
         )
+        self.preparation_seconds += (
+            time.perf_counter() - preparation_start
+        )
+
+        evaluation_start = time.perf_counter()
         score = self.score_wrapper.evaluate(state)
+        self.initial_evaluation_seconds = (
+            time.perf_counter() - evaluation_start
+        )
         self.initial_score = score
+
+        loop_start = time.perf_counter()
         step_number = 1
 
         while True:
@@ -112,14 +157,17 @@ class FastGreedyOptimizer:
                     ),
                     None,
                 )
+
                 if affordable is None:
                     break
+
                 index, candidate = affordable
                 state.apply(candidate.action)
                 improved_capabilities.add(candidate.action.key)
                 remaining_budget -= candidate.cost
                 upgrades.pop(index)
                 direct_applied = True
+
                 history.append(
                     FastGreedyStep(
                         step_number=step_number,
@@ -136,11 +184,18 @@ class FastGreedyOptimizer:
                 score = self.score_wrapper.evaluate(state)
 
             next_upgrade = first_feasible(upgrades, state)
+
             if next_upgrade is None:
+                self.greedy_loop_seconds = (
+                    time.perf_counter() - loop_start
+                )
                 return state, remaining_budget, score, history
 
             upgrade_index, target = next_upgrade
-            missing_budget = max(0, target.cost - remaining_budget)
+            missing_budget = max(
+                0, target.cost - remaining_budget
+            )
+
             if missing_budget == 0:
                 continue
 
@@ -154,15 +209,19 @@ class FastGreedyOptimizer:
                 feasible = first_feasible(
                     tentative_downgrades,
                     tentative_state,
-                    # Non declassare la capability che stiamo per
-                    # migliorare: altrimenti target.old_level non sarebbe
-                    # piu' coerente con lo stato provvisorio.
+                    # Non declassare capability già migliorate
+                    # né quella interessata dall'upgrade candidato.
                     blocked_keys=(
                         improved_capabilities | {target.action.key}
                     ),
                 )
+
                 if feasible is None:
+                    self.greedy_loop_seconds = (
+                        time.perf_counter() - loop_start
+                    )
                     return state, remaining_budget, score, history
+
                 downgrade_index, downgrade = feasible
                 tentative_state.apply(downgrade.action)
                 saving = -downgrade.cost
@@ -173,18 +232,38 @@ class FastGreedyOptimizer:
 
             tentative_state.apply(target.action)
             tentative_budget -= target.cost
-            tentative_score = self.score_wrapper.evaluate(tentative_state)
+            tentative_score = self.score_wrapper.evaluate(
+                tentative_state
+            )
 
-            if tentative_score <= score + self.EPSILON:
+            if not self.score_improved(tentative_score, score):
+                logger.info(
+                    "Riallocazione rifiutata | "
+                    "score corrente=%.16e | "
+                    "score candidato=%.16e | "
+                    "delta=%.16e | "
+                    "tolleranza=%.16e",
+                    score,
+                    tentative_score,
+                    tentative_score - score,
+                    self.RELATIVE_EPSILON
+                    * max(abs(score), abs(tentative_score)),
+                )
+                self.greedy_loop_seconds = (
+                    time.perf_counter() - loop_start
+                )
                 return state, remaining_budget, score, history
 
-            net_cost = target.cost + sum(item.cost for item in used_downgrades)
+            net_cost = target.cost + sum(
+                item.cost for item in used_downgrades
+            )
             state = tentative_state
             improved_capabilities.add(target.action.key)
             remaining_budget = tentative_budget
             score = tentative_score
             downgrades = tentative_downgrades
             upgrades.pop(upgrade_index)
+
             history.append(
                 FastGreedyStep(
                     step_number=step_number,
@@ -192,15 +271,24 @@ class FastGreedyOptimizer:
                     cost=net_cost,
                     specific_quality=(
                         target.specific_quality
-                        + sum(item.specific_quality for item in used_downgrades)
+                        + sum(
+                            item.specific_quality
+                            for item in used_downgrades
+                        )
                     ),
                     efficiency=target.efficiency,
                     remaining_budget=remaining_budget,
-                    downgrades=tuple(item.action for item in used_downgrades),
+                    downgrades=tuple(
+                        item.action for item in used_downgrades
+                    ),
                 )
             )
             step_number += 1
+
             logger.info(
-                "Riallocazione accettata | downgrade=%d | upgrade=%s | score=%.8f",
-                len(used_downgrades), target.action, score,
+                "Riallocazione accettata | "
+                "downgrade=%d | upgrade=%s | score=%.16e",
+                len(used_downgrades),
+                target.action,
+                score,
             )

@@ -1,0 +1,52 @@
+{
+  "name": "comparison_app_n3_s3_seed123",
+  "services": {
+    "edge_service1": {
+      "class": "comparison",
+      "profiles": [
+        "intrusion_detection"
+      ],
+      "requirements": {
+        "all": [
+          "host_ids",
+          "network_ids"
+        ]
+      }
+    },
+    "cloud_service": {
+      "class": "comparison",
+      "profiles": [
+        "network_protection",
+        "physical_security"
+      ],
+      "requirements": {
+        "all": [
+          {
+            "all": [
+              "firewall",
+              "network_ids"
+            ]
+          },
+          {
+            "any": [
+              "anti_tampering",
+              "access_control"
+            ]
+          }
+        ]
+      }
+    },
+    "edge_service2": {
+      "class": "comparison",
+      "profiles": [
+        "intrusion_detection"
+      ],
+      "requirements": {
+        "all": [
+          "host_ids",
+          "network_ids"
+        ]
+      }
+    }
+  }
+}

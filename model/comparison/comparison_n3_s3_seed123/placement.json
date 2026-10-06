@@ -1,0 +1,34 @@
+{
+  "name": "comparison_n3_s3_seed123",
+  "application": "comparison_app_n3_s3_seed123",
+  "operator": "appOp",
+  "components": [
+    {
+      "name": "edge_service1",
+      "node": "edge1"
+    },
+    {
+      "name": "cloud_service",
+      "node": "cloud1"
+    },
+    {
+      "name": "edge_service2",
+      "node": "edge2"
+    }
+  ],
+  "security_state": {
+    "edge1": {
+      "host_ids": 1,
+      "network_ids": 1
+    },
+    "cloud1": {
+      "access_control": 1,
+      "firewall": 1,
+      "network_ids": 1
+    },
+    "edge2": {
+      "host_ids": 1,
+      "network_ids": 1
+    }
+  }
+}

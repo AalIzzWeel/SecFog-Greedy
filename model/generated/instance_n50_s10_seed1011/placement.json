@@ -1,0 +1,105 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "edge7"
+    },
+    {
+      "name": "service2",
+      "node": "cloud11"
+    },
+    {
+      "name": "service3",
+      "node": "cloud10"
+    },
+    {
+      "name": "service4",
+      "node": "edge11"
+    },
+    {
+      "name": "service5",
+      "node": "edge14"
+    },
+    {
+      "name": "service6",
+      "node": "edge2"
+    },
+    {
+      "name": "service7",
+      "node": "edge8"
+    },
+    {
+      "name": "service8",
+      "node": "edge2"
+    },
+    {
+      "name": "service9",
+      "node": "edge27"
+    },
+    {
+      "name": "service10",
+      "node": "edge28"
+    }
+  ],
+  "name": "placement_n50_s10",
+  "application": "scalable_app_10",
+  "operator": "appOp",
+  "security_state": {
+    "edge2": {
+      "authentication": 1,
+      "backup": 1,
+      "encrypted_storage": 2,
+      "host_ids": 2,
+      "iot_data_encryption": 2,
+      "network_ids": 0,
+      "obfuscated_storage": 2,
+      "public_key_cryptography": 2,
+      "wireless_security": 0
+    },
+    "edge27": {
+      "access_control": 1,
+      "anti_tampering": 0,
+      "authentication": 1,
+      "host_ids": 0,
+      "network_ids": 1,
+      "public_key_cryptography": 0
+    },
+    "edge11": {
+      "backup": 2,
+      "encrypted_storage": 1,
+      "host_ids": 0,
+      "network_ids": 2,
+      "obfuscated_storage": 1
+    },
+    "edge28": {
+      "firewall": 2,
+      "host_ids": 1,
+      "iot_data_encryption": 0,
+      "network_ids": 0,
+      "wireless_security": 1
+    },
+    "edge14": {
+      "host_ids": 1,
+      "iot_data_encryption": 2,
+      "network_ids": 2,
+      "wireless_security": 0
+    },
+    "edge8": {
+      "access_logs": 1,
+      "host_ids": 1,
+      "network_ids": 1,
+      "resource_monitoring": 2
+    },
+    "cloud10": {
+      "access_control": 2
+    },
+    "cloud11": {
+      "authentication": 2,
+      "public_key_cryptography": 0
+    },
+    "edge7": {
+      "authentication": 0,
+      "public_key_cryptography": 2
+    }
+  }
+}

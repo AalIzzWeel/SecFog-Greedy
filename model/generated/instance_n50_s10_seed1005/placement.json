@@ -1,0 +1,108 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "edge8"
+    },
+    {
+      "name": "service2",
+      "node": "cloud4"
+    },
+    {
+      "name": "service3",
+      "node": "cloud15"
+    },
+    {
+      "name": "service4",
+      "node": "edge14"
+    },
+    {
+      "name": "service5",
+      "node": "edge1"
+    },
+    {
+      "name": "service6",
+      "node": "cloud14"
+    },
+    {
+      "name": "service7",
+      "node": "edge21"
+    },
+    {
+      "name": "service8",
+      "node": "edge28"
+    },
+    {
+      "name": "service9",
+      "node": "cloud1"
+    },
+    {
+      "name": "service10",
+      "node": "edge35"
+    }
+  ],
+  "name": "placement_n50_s10",
+  "application": "scalable_app_10",
+  "operator": "appOp",
+  "security_state": {
+    "edge35": {
+      "access_control": 0,
+      "anti_tampering": 2,
+      "authentication": 0,
+      "backup": 1,
+      "encrypted_storage": 2,
+      "obfuscated_storage": 2,
+      "public_key_cryptography": 0
+    },
+    "cloud1": {
+      "access_control": 0,
+      "access_logs": 2,
+      "authentication": 0,
+      "public_key_cryptography": 2,
+      "resource_monitoring": 0
+    },
+    "edge28": {
+      "backup": 2,
+      "encrypted_storage": 0,
+      "host_ids": 1,
+      "network_ids": 2,
+      "obfuscated_storage": 1
+    },
+    "cloud14": {
+      "authentication": 2,
+      "firewall": 2,
+      "network_ids": 0,
+      "public_key_cryptography": 0
+    },
+    "edge1": {
+      "access_logs": 1,
+      "iot_data_encryption": 0,
+      "resource_monitoring": 0,
+      "wireless_security": 2
+    },
+    "edge14": {
+      "access_logs": 0,
+      "host_ids": 0,
+      "network_ids": 2,
+      "resource_monitoring": 2
+    },
+    "edge21": {
+      "access_logs": 0,
+      "iot_data_encryption": 1,
+      "resource_monitoring": 2,
+      "wireless_security": 2
+    },
+    "cloud15": {
+      "host_ids": 1,
+      "network_ids": 1
+    },
+    "cloud4": {
+      "firewall": 1,
+      "network_ids": 0
+    },
+    "edge8": {
+      "host_ids": 2,
+      "network_ids": 0
+    }
+  }
+}

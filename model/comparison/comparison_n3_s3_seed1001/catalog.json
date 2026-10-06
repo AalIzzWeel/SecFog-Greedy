@@ -1,0 +1,297 @@
+{
+  "actions": {
+    "allow_modify": true
+  },
+  "capabilities": {
+    "authentication": {
+      "category": "virtualization",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.75,
+          "cost": 100
+        },
+        "1": {
+          "probability": 0.86,
+          "cost": 180
+        },
+        "2": {
+          "probability": 0.95,
+          "cost": 320
+        }
+      }
+    },
+    "public_key_cryptography": {
+      "category": "communication",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.72,
+          "cost": 120
+        },
+        "1": {
+          "probability": 0.85,
+          "cost": 210
+        },
+        "2": {
+          "probability": 0.96,
+          "cost": 360
+        }
+      }
+    },
+    "network_ids": {
+      "category": "communication",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.7,
+          "cost": 150
+        },
+        "1": {
+          "probability": 0.84,
+          "cost": 260
+        },
+        "2": {
+          "probability": 0.94,
+          "cost": 420
+        }
+      }
+    },
+    "encrypted_storage": {
+      "category": "data",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.74,
+          "cost": 140
+        },
+        "1": {
+          "probability": 0.87,
+          "cost": 250
+        },
+        "2": {
+          "probability": 0.96,
+          "cost": 430
+        }
+      }
+    },
+    "obfuscated_storage": {
+      "category": "data",
+      "applicable_to": [
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.65,
+          "cost": 70
+        },
+        "1": {
+          "probability": 0.78,
+          "cost": 130
+        },
+        "2": {
+          "probability": 0.88,
+          "cost": 220
+        }
+      }
+    },
+    "access_control": {
+      "category": "physical",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.72,
+          "cost": 80
+        },
+        "1": {
+          "probability": 0.85,
+          "cost": 170
+        },
+        "2": {
+          "probability": 0.93,
+          "cost": 300
+        }
+      }
+    },
+    "anti_tampering": {
+      "category": "physical",
+      "applicable_to": [
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.68,
+          "cost": 90
+        },
+        "1": {
+          "probability": 0.8,
+          "cost": 180
+        },
+        "2": {
+          "probability": 0.92,
+          "cost": 320
+        }
+      }
+    },
+    "backup": {
+      "category": "data",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.7,
+          "cost": 60
+        },
+        "1": {
+          "probability": 0.82,
+          "cost": 130
+        },
+        "2": {
+          "probability": 0.9,
+          "cost": 240
+        }
+      }
+    },
+    "firewall": {
+      "category": "communication",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.75,
+          "cost": 80
+        },
+        "1": {
+          "probability": 0.88,
+          "cost": 170
+        },
+        "2": {
+          "probability": 0.95,
+          "cost": 300
+        }
+      }
+    },
+    "resource_monitoring": {
+      "category": "virtualization",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.7,
+          "cost": 50
+        },
+        "1": {
+          "probability": 0.82,
+          "cost": 120
+        },
+        "2": {
+          "probability": 0.9,
+          "cost": 220
+        }
+      }
+    },
+    "host_ids": {
+      "category": "virtualization",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.72,
+          "cost": 70
+        },
+        "1": {
+          "probability": 0.84,
+          "cost": 150
+        },
+        "2": {
+          "probability": 0.92,
+          "cost": 270
+        }
+      }
+    },
+    "access_logs": {
+      "category": "virtualization",
+      "applicable_to": [
+        "cloud",
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.74,
+          "cost": 40
+        },
+        "1": {
+          "probability": 0.86,
+          "cost": 100
+        },
+        "2": {
+          "probability": 0.93,
+          "cost": 200
+        }
+      }
+    },
+    "wireless_security": {
+      "category": "communication",
+      "applicable_to": [
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.68,
+          "cost": 60
+        },
+        "1": {
+          "probability": 0.8,
+          "cost": 140
+        },
+        "2": {
+          "probability": 0.9,
+          "cost": 260
+        }
+      }
+    },
+    "iot_data_encryption": {
+      "category": "communication",
+      "applicable_to": [
+        "edge"
+      ],
+      "levels": {
+        "0": {
+          "probability": 0.7,
+          "cost": 90
+        },
+        "1": {
+          "probability": 0.84,
+          "cost": 180
+        },
+        "2": {
+          "probability": 0.93,
+          "cost": 320
+        }
+      }
+    }
+  }
+}

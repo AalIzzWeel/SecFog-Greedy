@@ -1,0 +1,26 @@
+{
+  "family": "comparison_n3_s3",
+  "seed": 1001,
+  "nodes": 3,
+  "services": 3,
+  "state_pairs": 7,
+  "initial_cost": 1210,
+  "capabilities_by_node": {
+    "edge1": [
+      "host_ids",
+      "network_ids"
+    ],
+    "cloud1": [
+      "access_control",
+      "access_logs",
+      "resource_monitoring"
+    ],
+    "edge2": [
+      "host_ids",
+      "network_ids"
+    ]
+  },
+  "catalog_source": "security_catalog.json",
+  "profiles_source": "requirement_profiles.json",
+  "description": "L'ottimo viene calcolato dall'esaustivo per ciascun budget."
+}

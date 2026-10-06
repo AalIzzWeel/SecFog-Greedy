@@ -1,0 +1,56 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "edge8"
+    },
+    {
+      "name": "service2",
+      "node": "edge13"
+    },
+    {
+      "name": "service3",
+      "node": "edge10"
+    },
+    {
+      "name": "service4",
+      "node": "edge14"
+    },
+    {
+      "name": "service5",
+      "node": "edge10"
+    }
+  ],
+  "name": "placement_n25_s5",
+  "application": "scalable_app_5",
+  "operator": "appOp",
+  "security_state": {
+    "edge10": {
+      "access_logs": 1,
+      "backup": 0,
+      "encrypted_storage": 0,
+      "firewall": 1,
+      "iot_data_encryption": 0,
+      "network_ids": 0,
+      "obfuscated_storage": 2,
+      "resource_monitoring": 1,
+      "wireless_security": 2
+    },
+    "edge13": {
+      "access_control": 0,
+      "anti_tampering": 0,
+      "iot_data_encryption": 2,
+      "wireless_security": 1
+    },
+    "edge14": {
+      "firewall": 2,
+      "iot_data_encryption": 0,
+      "network_ids": 2,
+      "wireless_security": 0
+    },
+    "edge8": {
+      "host_ids": 1,
+      "network_ids": 0
+    }
+  }
+}

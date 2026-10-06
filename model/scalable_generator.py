@@ -27,6 +27,9 @@ SCALABILITY_CONFIGS = (
     (100, 15),
     (200, 25),
     (400, 50),
+    (600, 70),
+    (800, 90),
+    (1000, 100),
 )
 
 
@@ -748,11 +751,7 @@ if __name__ == "__main__":
         profiles_path
     )
 
-    seeds = (
-        42,
-        123,
-        999,
-    )
+    seeds = (42, 123, 999, *range(1000, 1017))
 
     for seed in seeds:
         generated = generate_scalable_instances(

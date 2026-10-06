@@ -1,0 +1,107 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "cloud7"
+    },
+    {
+      "name": "service2",
+      "node": "edge34"
+    },
+    {
+      "name": "service3",
+      "node": "edge5"
+    },
+    {
+      "name": "service4",
+      "node": "edge17"
+    },
+    {
+      "name": "service5",
+      "node": "edge19"
+    },
+    {
+      "name": "service6",
+      "node": "edge26"
+    },
+    {
+      "name": "service7",
+      "node": "edge3"
+    },
+    {
+      "name": "service8",
+      "node": "edge13"
+    },
+    {
+      "name": "service9",
+      "node": "edge23"
+    },
+    {
+      "name": "service10",
+      "node": "edge28"
+    }
+  ],
+  "name": "placement_n50_s10",
+  "application": "scalable_app_10",
+  "operator": "appOp",
+  "security_state": {
+    "edge28": {
+      "access_control": 1,
+      "access_logs": 2,
+      "anti_tampering": 1,
+      "host_ids": 2,
+      "network_ids": 1,
+      "resource_monitoring": 2
+    },
+    "edge23": {
+      "authentication": 2,
+      "firewall": 0,
+      "host_ids": 2,
+      "network_ids": 2,
+      "public_key_cryptography": 2
+    },
+    "edge3": {
+      "access_logs": 0,
+      "backup": 1,
+      "encrypted_storage": 1,
+      "obfuscated_storage": 0,
+      "resource_monitoring": 1
+    },
+    "edge13": {
+      "access_logs": 2,
+      "host_ids": 1,
+      "network_ids": 2,
+      "resource_monitoring": 2
+    },
+    "edge17": {
+      "access_control": 1,
+      "anti_tampering": 2,
+      "authentication": 0,
+      "public_key_cryptography": 2
+    },
+    "edge26": {
+      "access_logs": 1,
+      "iot_data_encryption": 0,
+      "resource_monitoring": 0,
+      "wireless_security": 2
+    },
+    "edge19": {
+      "firewall": 1,
+      "host_ids": 1,
+      "network_ids": 1
+    },
+    "edge5": {
+      "backup": 1,
+      "encrypted_storage": 1,
+      "obfuscated_storage": 1
+    },
+    "cloud7": {
+      "access_logs": 1,
+      "resource_monitoring": 1
+    },
+    "edge34": {
+      "access_control": 0,
+      "anti_tampering": 2
+    }
+  }
+}

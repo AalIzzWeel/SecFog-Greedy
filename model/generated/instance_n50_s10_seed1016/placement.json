@@ -1,0 +1,106 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "edge16"
+    },
+    {
+      "name": "service2",
+      "node": "edge28"
+    },
+    {
+      "name": "service3",
+      "node": "cloud13"
+    },
+    {
+      "name": "service4",
+      "node": "cloud7"
+    },
+    {
+      "name": "service5",
+      "node": "edge23"
+    },
+    {
+      "name": "service6",
+      "node": "edge20"
+    },
+    {
+      "name": "service7",
+      "node": "edge7"
+    },
+    {
+      "name": "service8",
+      "node": "edge4"
+    },
+    {
+      "name": "service9",
+      "node": "edge3"
+    },
+    {
+      "name": "service10",
+      "node": "edge34"
+    }
+  ],
+  "name": "placement_n50_s10",
+  "application": "scalable_app_10",
+  "operator": "appOp",
+  "security_state": {
+    "edge20": {
+      "backup": 1,
+      "encrypted_storage": 2,
+      "iot_data_encryption": 1,
+      "obfuscated_storage": 2,
+      "wireless_security": 0
+    },
+    "edge3": {
+      "access_control": 2,
+      "anti_tampering": 0,
+      "firewall": 2,
+      "host_ids": 1,
+      "network_ids": 0
+    },
+    "edge34": {
+      "access_logs": 2,
+      "firewall": 0,
+      "host_ids": 2,
+      "network_ids": 2,
+      "resource_monitoring": 2
+    },
+    "cloud7": {
+      "access_logs": 1,
+      "authentication": 0,
+      "public_key_cryptography": 0,
+      "resource_monitoring": 2
+    },
+    "edge23": {
+      "access_logs": 2,
+      "iot_data_encryption": 1,
+      "resource_monitoring": 2,
+      "wireless_security": 2
+    },
+    "edge4": {
+      "access_control": 0,
+      "anti_tampering": 0,
+      "authentication": 2,
+      "public_key_cryptography": 1
+    },
+    "edge7": {
+      "firewall": 0,
+      "iot_data_encryption": 2,
+      "network_ids": 1,
+      "wireless_security": 0
+    },
+    "cloud13": {
+      "host_ids": 2,
+      "network_ids": 2
+    },
+    "edge16": {
+      "authentication": 1,
+      "public_key_cryptography": 1
+    },
+    "edge28": {
+      "iot_data_encryption": 0,
+      "wireless_security": 0
+    }
+  }
+}

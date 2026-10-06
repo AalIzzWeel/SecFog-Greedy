@@ -10,7 +10,7 @@ from model.comparison_generator import (
     DEFAULT_CATALOG_PATH,
     DEFAULT_OUTPUT_DIR,
     DEFAULT_PROFILES_PATH,
-    DEFAULT_SCENARIOS,
+    DEFAULT_SEEDS,
     generate_comparison_instances,
     save_comparison_instance,
 )
@@ -33,7 +33,7 @@ from src.fast_greedy import (
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 BASE_PATH = PROJECT_ROOT / "prolog" / "secfog_base.pl"
 RESULTS_DIR = PROJECT_ROOT / "results"
-DEFAULT_BUDGETS = (0, 100, 300, 400)
+DEFAULT_BUDGETS = (0, 50, 100, 200, 300, 400, 600)
 APPROACHES = (
     "upgrade-then-downgrade",
     "downgrade-then-upgrade",
@@ -44,7 +44,7 @@ EPSILON = 1e-12
 @dataclass(frozen=True)
 class ComparisonResult:
     instance: str
-    scenario: str
+    seed: int
     nodes: int
     services: int
     state_pairs: int
@@ -208,7 +208,7 @@ def run_instance(
             rows.append(
                 ComparisonResult(
                     instance=instance_dir.name,
-                    scenario=str(metadata["scenario"]),
+                    seed=int(metadata["seed"]),
                     nodes=int(metadata["nodes"]),
                     services=int(metadata["services"]),
                     state_pairs=int(metadata["state_pairs"]),
@@ -251,11 +251,14 @@ def run_instance(
 
 def _save_results(
     rows: list[ComparisonResult],
+    paths: tuple[Path, Path] | None = None,
 ) -> tuple[Path, Path]:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    csv_path = RESULTS_DIR / f"comparison_family_{timestamp}.csv"
-    json_path = RESULTS_DIR / f"comparison_family_{timestamp}.json"
+    csv_path, json_path = paths or (
+        RESULTS_DIR / f"comparison_family_{timestamp}.csv",
+        RESULTS_DIR / f"comparison_family_{timestamp}.json",
+    )
     dictionaries = [asdict(row) for row in rows]
 
     with csv_path.open("w", newline="", encoding="utf-8") as file:
@@ -275,7 +278,7 @@ def _print_result(row: ComparisonResult) -> None:
         else "n/a"
     )
     print(
-        f"{row.scenario} | budget={row.budget} | {row.approach} | "
+        f"seed={row.seed} | budget={row.budget} | {row.approach} | "
         f"opt={row.exhaustive_score:.8f} | "
         f"greedy={row.greedy_score:.8f} | gap={gap} | "
         f"hit={row.optimal_hit} | "
@@ -287,15 +290,15 @@ def _print_result(row: ComparisonResult) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
-            "Confronta esaustivo e Fast Greedy su una famiglia di "
-            "piccole istanze realistiche edge-cloud."
+            "Confronta esaustivo e Fast Greedy su istanze "
+            "riproducibili con tre nodi e tre servizi."
         )
     )
     parser.add_argument(
-        "--scenarios",
+        "--seeds",
+        type=int,
         nargs="+",
-        choices=DEFAULT_SCENARIOS,
-        default=list(DEFAULT_SCENARIOS),
+        default=list(DEFAULT_SEEDS),
     )
     parser.add_argument(
         "--catalog", type=Path, default=DEFAULT_CATALOG_PATH
@@ -317,30 +320,29 @@ def main() -> None:
     args = parser.parse_args()
 
     instances = generate_comparison_instances(
-        args.scenarios,
+        args.seeds,
         catalog_path=args.catalog,
         profiles_path=args.profiles,
     )
     rows = []
+    saved_paths = None
     for instance in instances:
-        instance_dir = save_comparison_instance(
-            instance, args.instances_dir
-        )
-        print(f"\nIstanza: {instance_dir.name}")
-        rows.extend(
-            run_instance(
-                instance_dir,
-                args.budgets,
+        instance_dir = save_comparison_instance(instance, args.instances_dir)
+        print(f"\nIstanza: {instance_dir.name}", flush=True)
+        for budget in args.budgets:
+            batch = run_instance(
+                instance_dir, [budget],
                 max_exhaustive_seconds=args.max_exhaustive_seconds,
             )
-        )
-    for row in rows:
-        _print_result(row)
+            rows.extend(batch)
+            for row in batch:
+                _print_result(row)
+            if not args.no_save:
+                saved_paths = _save_results(rows, paths=saved_paths)
 
-    if not args.no_save:
-        csv_path, json_path = _save_results(rows)
-        print(f"CSV : {csv_path}")
-        print(f"JSON: {json_path}")
+    if saved_paths is not None:
+        print(f"CSV : {saved_paths[0]}")
+        print(f"JSON: {saved_paths[1]}")
 
 
 if __name__ == "__main__":

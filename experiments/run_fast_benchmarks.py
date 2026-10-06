@@ -52,11 +52,7 @@ QUICK_INSTANCES = [
     "instance_n50_s10_seed42",
 ]
 
-THESIS_SEEDS = (
-    42,
-    123,
-    999,
-)
+THESIS_SEEDS = (42, 123, 999, *range(1000, 1017))
 
 THESIS_CONFIGS = (
     (25, 5),
@@ -64,6 +60,9 @@ THESIS_CONFIGS = (
     (100, 15),
     (200, 25),
     (400, 50),
+    (600, 70),
+    (800, 90),
+    (1000, 100),
 )
 
 THESIS_INSTANCES = [
@@ -132,6 +131,7 @@ class FastBenchmarkResult:
     delta_score: float
     log_gain: float | None
     relative_improvement_percent: float
+    log_gain_percent: float | None
 
     net_cost: int
     remaining_budget: int
@@ -144,6 +144,9 @@ class FastBenchmarkResult:
     wrapper_cache_size: int
 
     elapsed_seconds: float
+    preparation_seconds: float
+    initial_evaluation_seconds: float
+    greedy_loop_seconds: float
 
 
 def run_experiment(
@@ -255,6 +258,7 @@ def run_experiment(
         )
 
     log_gain = None
+    log_gain_percent = None
 
     if (
         initial_score > 0
@@ -263,6 +267,7 @@ def run_experiment(
         log_gain = math.log10(
             final_score / initial_score
         )
+        log_gain_percent = 100.0 * math.log(final_score / initial_score)
 
     net_cost = optimizer.costs.calculate_net_cost(
         original_initial_state,
@@ -306,6 +311,7 @@ def run_experiment(
         final_score=final_score,
         delta_score=delta_score,
         log_gain=log_gain,
+        log_gain_percent=log_gain_percent,
         relative_improvement_percent=(
             relative_improvement
         ),
@@ -323,6 +329,9 @@ def run_experiment(
         wrapper_cache_size=wrapper.cache_size,
 
         elapsed_seconds=elapsed_seconds,
+        preparation_seconds=optimizer.preparation_seconds,
+        initial_evaluation_seconds=optimizer.initial_evaluation_seconds,
+        greedy_loop_seconds=optimizer.greedy_loop_seconds,
     )
 
     details = {
@@ -440,6 +449,9 @@ def print_result(
         f"Tempo                : "
         f"{result.elapsed_seconds:.3f} s"
     )
+    print(f"Preparazione         : {result.preparation_seconds:.3f} s")
+    print(f"Score iniziale       : {result.initial_evaluation_seconds:.3f} s (tempo)")
+    print(f"Ciclo greedy         : {result.greedy_loop_seconds:.3f} s")
 
 
 def save_results(

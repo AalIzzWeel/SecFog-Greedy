@@ -80,7 +80,7 @@ def resolve_csv(argument: Path | None) -> Path:
 def validate_dataframe(df: pd.DataFrame) -> None:
     required = {
         "instance",
-        "scenario",
+        "seed",
         "nodes",
         "services",
         "state_pairs",
@@ -137,12 +137,10 @@ def setup_axis(ax, budgets: list[int], ylabel: str) -> None:
 
 def save_figure(fig, output_dir: Path, stem: str) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
-    pdf_path = output_dir / f"{stem}.pdf"
     png_path = output_dir / f"{stem}.png"
-    fig.savefig(pdf_path, bbox_inches="tight")
     fig.savefig(png_path, dpi=180, bbox_inches="tight")
     plt.close(fig)
-    print(f"Grafico salvato: {pdf_path}")
+    print(f"Grafico salvato: {png_path}")
 
 
 def aggregate_values(
@@ -340,8 +338,8 @@ def main() -> None:
     print(f"CSV        : {csv_path}")
     print(f"Istanze    : {dataframe['instance'].nunique()}")
     print(
-        "Scenari   : "
-        + ", ".join(sorted(dataframe["scenario"].unique()))
+        "Seed       : "
+        + ", ".join(map(str, sorted(dataframe["seed"].unique())))
     )
     print("Barre      : media +/- deviazione standard")
     print(f"Output     : {output_dir}")

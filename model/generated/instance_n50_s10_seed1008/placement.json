@@ -1,0 +1,108 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "cloud12"
+    },
+    {
+      "name": "service2",
+      "node": "cloud1"
+    },
+    {
+      "name": "service3",
+      "node": "edge17"
+    },
+    {
+      "name": "service4",
+      "node": "edge5"
+    },
+    {
+      "name": "service5",
+      "node": "edge33"
+    },
+    {
+      "name": "service6",
+      "node": "edge34"
+    },
+    {
+      "name": "service7",
+      "node": "edge31"
+    },
+    {
+      "name": "service8",
+      "node": "edge11"
+    },
+    {
+      "name": "service9",
+      "node": "edge18"
+    },
+    {
+      "name": "service10",
+      "node": "edge16"
+    }
+  ],
+  "name": "placement_n50_s10",
+  "application": "scalable_app_10",
+  "operator": "appOp",
+  "security_state": {
+    "edge16": {
+      "access_control": 2,
+      "anti_tampering": 2,
+      "authentication": 0,
+      "iot_data_encryption": 2,
+      "public_key_cryptography": 0,
+      "wireless_security": 1
+    },
+    "edge18": {
+      "access_control": 1,
+      "access_logs": 1,
+      "anti_tampering": 0,
+      "firewall": 0,
+      "network_ids": 1,
+      "resource_monitoring": 2
+    },
+    "edge31": {
+      "backup": 0,
+      "encrypted_storage": 0,
+      "iot_data_encryption": 2,
+      "obfuscated_storage": 2,
+      "wireless_security": 2
+    },
+    "edge11": {
+      "firewall": 2,
+      "iot_data_encryption": 1,
+      "network_ids": 1,
+      "wireless_security": 2
+    },
+    "edge33": {
+      "access_control": 2,
+      "anti_tampering": 0,
+      "firewall": 1,
+      "network_ids": 1
+    },
+    "edge34": {
+      "access_control": 2,
+      "anti_tampering": 2,
+      "iot_data_encryption": 1,
+      "wireless_security": 2
+    },
+    "edge5": {
+      "access_control": 0,
+      "anti_tampering": 0,
+      "iot_data_encryption": 2,
+      "wireless_security": 2
+    },
+    "cloud1": {
+      "host_ids": 2,
+      "network_ids": 2
+    },
+    "cloud12": {
+      "access_logs": 1,
+      "resource_monitoring": 2
+    },
+    "edge17": {
+      "authentication": 2,
+      "public_key_cryptography": 0
+    }
+  }
+}

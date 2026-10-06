@@ -1,170 +1,48 @@
-# Modulo `model`
-
-Contiene il catalogo delle capability, i profili dei security requirement e i generatori delle istanze usate nei benchmark.
-
-## Struttura
+# Modello e istanze
 
 | Percorso | Contenuto |
 | --- | --- |
-| `security_catalog.json` | Capability, categorie, applicabilità, livelli, efficacia e costi. |
-| `requirement_profiles.json` | Profili riutilizzabili di requirement `all`/`any`. |
-| `applications/smartbuilding.json` | Applicazione di esempio. |
-| `scalable_generator.py` | Generatore delle istanze di scalabilità. |
-| `generated/` | Istanze scalabili generate. |
-| `comparison_generator.py` | Generatore delle piccole istanze per il confronto esatto. |
-| `comparison/` | Famiglia deterministica usata da greedy ed esaustivo. |
+| `security_catalog.json` | Contromisure, applicabilità, livelli, efficacia probabilistica e costi. |
+| `requirement_profiles.json` | Profili ricorsivi di requisiti di sicurezza. |
+| `applications/` | Applicazioni di esempio. |
+| `scalable_generator.py`, `generated/` | Generatore e istanze di scalabilità. |
+| `comparison_generator.py`, `comparison/` | Generatore e istanze del confronto con l'esaustivo. |
 
-## Catalogo delle capability
+## Catalogo e requisiti
 
-Esempio ridotto:
+Ogni livello contiene `probability` (efficacia probabilistica) e `cost` (costo assoluto). Il costo di una modifica è la differenza fra costo nuovo e precedente. `L0` è un livello attivo. Il catalogo consente esclusivamente `MODIFY`.
 
-```json
-{
-  "actions": {"allow_modify": true},
-  "capabilities": {
-    "authentication": {
-      "category": "virtualization",
-      "applicable_to": ["cloud", "edge"],
-      "levels": {
-        "0": {"probability": 0.75, "cost": 100},
-        "1": {"probability": 0.86, "cost": 180},
-        "2": {"probability": 0.95, "cost": 320}
-      }
-    }
-  }
-}
-```
-
-`probability` rappresenta l'efficacia probabilistica della capability. Il rischio locale usato dall'euristica è `1 - probability`. `cost` è il costo assoluto del livello; il costo di una modifica è la differenza fra costo nuovo e precedente.
-
-La versione corrente ammette soltanto azioni `MODIFY`. `L0` non rappresenta una capability assente: è un livello attivo con costo ed efficacia propri.
-
-## Profili dei requirement
-
-`requirement_profiles.json` contiene template ricorsivi basati su:
+Una stringa nei requisiti identifica una contromisura. Le composizioni `all` e `any` rappresentano rispettivamente congiunzione e disgiunzione, anche annidate:
 
 ```json
-{"all": ["firewall", "network_ids"]}
+{"all": ["authentication", {"any": ["encrypted_storage", "obfuscated_storage"]}]}
 ```
 
-```json
-{"any": ["encrypted_storage", "obfuscated_storage"]}
-```
-
-- `all`: devono contribuire tutti i figli;
-- `any`: sono ammesse alternative;
-- una stringa identifica direttamente una capability.
-
-I generatori verificano che i requirement siano validi e applicabili al tipo di nodo scelto.
-
-## Istanze scalabili
-
-Ogni directory `generated/instance_n<N>_s<S>_seed<SEED>/` contiene:
-
-```text
-infrastructure.json  # nodi cloud/edge e operatori
-application.json     # servizi, classi, profili e requirement
-placement.json       # placement fissato e security_state iniziale
-```
-
-Configurazioni predefinite:
-
-| Nodi | Servizi |
-| ---: | ---: |
-| 25 | 5 |
-| 50 | 10 |
-| 100 | 15 |
-| 200 | 25 |
-| 400 | 50 |
-
-Per ogni taglia vengono usati i seed `42`, `123` e `999`, per un totale di 15 istanze.
-
-Caratteristiche:
-
-- 30% dei nodi cloud e 70% edge;
-- classi `light`, `medium`, `heavy` distribuite circa 30/50/20;
-- rispettivamente 1, 2 o 3 profili di requirement per servizio;
-- servizi assegnati soltanto a nodi compatibili;
-- `security_state` limitato alle capability richieste e applicabili;
-- livelli iniziali scelti pseudo-casualmente fra quelli disponibili;
-- nodi dello stato ordinati per numero decrescente di capability menzionate dai requirement.
-
-La generazione è deterministica. Per ogni seed principale vengono usati:
-
-- `seed` per assegnare i profili;
-- `seed + 1` per il placement;
-- `seed + 2` per i livelli iniziali.
-
-Generazione:
+## Scalabilità
 
 ```bash
 python3 -m model.scalable_generator
 ```
 
-Il comando genera o aggiorna tutte le 15 directory in `model/generated/`.
+Il comando genera otto taglie: 25/5, 50/10, 100/15, 200/25, 400/50, 600/70, 800/90, 1000/100 nodi/servizi. Ogni taglia usa 20 seed: 42, 123, 999 e 1000–1016, per 160 istanze.
 
-## Istanze per il confronto esatto
+Ogni directory `generated/instance_n<N>_s<S>_seed<SEED>/` contiene `infrastructure.json`, `application.json` e `placement.json`.
 
-`comparison_generator.py` crea piccole istanze deterministiche, sufficientemente contenute da poter essere enumerate da OR-Tools.
+L'infrastruttura ha circa il 30% di nodi cloud e il 70% edge. I servizi sono distribuiti nelle classi light, medium e heavy con proporzioni 30/50/20 e rispettivamente 1, 2 e 3 profili. Il placement usa nodi edge compatibili; lo stato comprende le contromisure richieste sui nodi usati. I livelli iniziali sono scelti pseudo-casualmente.
 
-Ogni scenario contiene:
+La generazione è deterministica: il seed principale determina i profili, `seed + 1` il placement e `seed + 2` i livelli iniziali.
 
-- 2 nodi: `edge1` e `cloud1`;
-- 2 servizi, uno per nodo;
-- 3 capability attive per nodo;
-- livelli iniziali centrali;
-- 6 coppie nodo-capability complessive.
-
-Scenari disponibili:
-
-| Scenario | Focus |
-| --- | --- |
-| `storage` | Protezione dello storage e sicurezza fisica. |
-| `communication` | Comunicazione sicura, protezione di rete e rilevamento intrusioni. |
-| `monitoring` | Monitoraggio, storage e sicurezza fisica. |
-| `network` | Protezione della rete e sicurezza fisica. |
-| `detection` | Rilevamento intrusioni, storage e sicurezza fisica. |
-
-Generazione completa:
+## Confronto esatto
 
 ```bash
 python3 -m model.comparison_generator
+python3 -m model.comparison_generator --seeds 42 123 --output-dir model/comparison
 ```
 
-Sottoinsieme e directory personalizzata:
+I seed predefiniti sono 42, 123, 999, 1000, 1001. Ogni directory `comparison/comparison_n3_s3_seed<SEED>/` contiene `catalog.json`, `infrastructure.json`, `application.json`, `placement.json` e `metadata.json`.
 
-```bash
-python3 -m model.comparison_generator \
-  --scenarios storage communication \
-  --output-dir model/comparison
-```
+Le istanze hanno due nodi edge e uno cloud, con un servizio per nodo. Sono presenti due contromisure per ciascun edge e tre sul cloud: sette coppie complessive. Il seed determina la scelta dei profili e la distribuzione dei livelli iniziali, composta da due `L0`, tre `L1` e due `L2`.
 
-Opzioni disponibili:
+Con tre livelli per coppia, lo spazio ha `3^7 = 2187` configurazioni prima del filtro del budget. L'ottimo viene calcolato dall'esaustivo, non incorporato nel generatore.
 
-| Opzione | Default |
-| --- | --- |
-| `--scenarios ...` | Tutti e cinque gli scenari |
-| `--catalog` | `model/security_catalog.json` |
-| `--profiles` | `model/requirement_profiles.json` |
-| `--output-dir` | `model/comparison/` |
-
-Ogni directory `comparison/realistic_edge_cloud_<scenario>/` contiene:
-
-```text
-catalog.json
-infrastructure.json
-application.json
-placement.json
-metadata.json
-```
-
-Il catalogo viene copiato nell'istanza per rendere il confronto autosufficiente. `metadata.json` registra scenario, dimensioni, costo iniziale e capability presenti. L'ottimo non è incorporato nelle istanze: viene calcolato dalla ricerca esaustiva per ogni budget.
-
-## Relazione fra le due famiglie
-
-| Famiglia | Scopo | Algoritmo principale |
-| --- | --- | --- |
-| `generated/` | Valutare scalabilità e comportamento sui seed | Fast Greedy |
-| `comparison/` | Misurare gap, runtime e chiamate ProbLog rispetto all'ottimo | Fast Greedy + esaustivo |
-
-Le istanze di confronto servono a valutare la qualità della soluzione greedy; quelle scalabili servono a mostrare che il greedy rimane applicabile quando l'enumerazione completa diventa impraticabile.
+Opzioni: `--seeds`, `--catalog`, `--profiles`, `--output-dir`. Il benchmark di confronto genera automaticamente queste istanze.

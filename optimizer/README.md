@@ -76,17 +76,16 @@ I requirement possono essere capability atomiche oppure composizioni JSON:
 Per ciascuna azione calcola:
 
 $$
-q(a)=p(\ell_{new})-p(\ell_{old}),
+q(a)=e(\ell_{new})-e(\ell_{old}),
 \qquad
 \eta(a)=\frac{q(a)}{\Delta c(a)}.
 $$
 
-dove $q(a)$ è la **_qualità specifica_** dell'azione e $eta(a)$ la sua efficienza, calcolata come il rapporto tra la qualità specifica (guadagno) e il costo dell'azione. 
+dove $q(a)$ è la **_qualità specifica_** dell'azione e $\eta(a)$ la sua efficienza, calcolata come il rapporto tra la qualità specifica (guadagno) e il costo dell'azione.
 
-Per gli upgrade e i downgrade viene utilizzata la stessa metrica euristica, ossia l'efficienza:
-* gli upgrade sono ordinati per efficienza decrescente --> si prediligono le azioni che "costano poco e alzano di più lo score di sicurezza"
-* i downgrade, per i quali qualità e costo sono entrambi negativi, sono ordinati per efficienza crescente 
-    * conviene liberare prima le azioni che portano minor guadagno per unità di costo 
+L'efficacia probabilistica è indicata con $e$; il rischio locale è $p=1-e$. Quindi $q(a)=p(\ell_{old})-p(\ell_{new})$.
+
+Gli upgrade sono ordinati per efficienza decrescente. Per i downgrade, qualità e costo sono entrambi negativi: l'ordinamento crescente privilegia la minore perdita di efficacia per unità di budget liberata. Il beneficio globale è valutato separatamente da SecFog.
 
 L'ordine dei nodi risolve i pareggi ed è determinato dal numero complessivo di capability menzionate nei requirement associati al nodo. I pareggi successivi sono risolti in modo deterministico tramite nome della capability e nuovo livello.
 

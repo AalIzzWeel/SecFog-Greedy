@@ -1,0 +1,105 @@
+{
+  "components": [
+    {
+      "name": "service1",
+      "node": "edge18"
+    },
+    {
+      "name": "service2",
+      "node": "cloud1"
+    },
+    {
+      "name": "service3",
+      "node": "edge1"
+    },
+    {
+      "name": "service4",
+      "node": "edge17"
+    },
+    {
+      "name": "service5",
+      "node": "edge3"
+    },
+    {
+      "name": "service6",
+      "node": "edge13"
+    },
+    {
+      "name": "service7",
+      "node": "edge13"
+    },
+    {
+      "name": "service8",
+      "node": "edge29"
+    },
+    {
+      "name": "service9",
+      "node": "edge25"
+    },
+    {
+      "name": "service10",
+      "node": "edge12"
+    }
+  ],
+  "name": "placement_n50_s10",
+  "application": "scalable_app_10",
+  "operator": "appOp",
+  "security_state": {
+    "edge13": {
+      "access_control": 0,
+      "access_logs": 1,
+      "anti_tampering": 1,
+      "backup": 2,
+      "encrypted_storage": 2,
+      "obfuscated_storage": 2,
+      "resource_monitoring": 1
+    },
+    "edge25": {
+      "authentication": 1,
+      "backup": 1,
+      "encrypted_storage": 2,
+      "host_ids": 2,
+      "network_ids": 1,
+      "obfuscated_storage": 1,
+      "public_key_cryptography": 2
+    },
+    "edge12": {
+      "access_control": 2,
+      "anti_tampering": 0,
+      "authentication": 2,
+      "iot_data_encryption": 2,
+      "public_key_cryptography": 0,
+      "wireless_security": 1
+    },
+    "edge17": {
+      "firewall": 1,
+      "iot_data_encryption": 1,
+      "network_ids": 2,
+      "wireless_security": 1
+    },
+    "edge29": {
+      "access_control": 2,
+      "anti_tampering": 2,
+      "host_ids": 2,
+      "network_ids": 0
+    },
+    "edge3": {
+      "firewall": 2,
+      "iot_data_encryption": 0,
+      "network_ids": 1,
+      "wireless_security": 0
+    },
+    "cloud1": {
+      "firewall": 0,
+      "network_ids": 2
+    },
+    "edge1": {
+      "authentication": 1,
+      "public_key_cryptography": 2
+    },
+    "edge18": {
+      "host_ids": 0,
+      "network_ids": 0
+    }
+  }
+}

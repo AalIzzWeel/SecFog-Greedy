@@ -1,0 +1,31 @@
+{
+  "family": "comparison_n3_s3_redundant_any_v2",
+  "seed": 42,
+  "nodes": 3,
+  "services": 3,
+  "state_pairs": 7,
+  "initial_level_counts": {
+    "L0": 4,
+    "L1": 1,
+    "L2": 2
+  },
+  "initial_cost": 1180,
+  "capabilities_by_node": {
+    "edge1": [
+      "access_control",
+      "anti_tampering"
+    ],
+    "cloud1": [
+      "access_control",
+      "backup",
+      "encrypted_storage"
+    ],
+    "edge2": [
+      "host_ids",
+      "network_ids"
+    ]
+  },
+  "catalog_source": "security_catalog.json",
+  "profiles_source": "requirement_profiles.json",
+  "description": "ANY ridondante su edge1; altri livelli estratti dal seed. Catalogo originale, nessuna selezione in base al gap. L'ottimo viene calcolato dall'esaustivo per ciascun budget."
+}
